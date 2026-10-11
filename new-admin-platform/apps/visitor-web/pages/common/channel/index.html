@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Select Channel</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap">
+      <div class="panel">
+        <p class="notice" id="page-variant" hidden></p>
+        <h1>Select a channel</h1>
+        <p>Choose how you want to continue this case.</p>
+        <div class="channel-row">
+          <button type="button" class="ghost" data-channel="chat">Chat</button>
+          <button type="button" class="ghost" data-channel="phone">Phone</button>
+          <button type="button" class="ghost" data-channel="desk">Desk</button>
+        </div>
+        <button type="button" id="next">Continue</button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      import { postDrillChoice, sendMessage, setError } from '/js/forms.js';
+      setBanner();
+      bootstrapVisitor(({token, session, preview, goLoading}) => {
+        paintApplied(session);
+        let channel = 'chat';
+        document.querySelectorAll('[data-channel]').forEach((btn) => {
+          btn.onclick = () => {
+            channel = String(btn.getAttribute('data-channel') || 'chat');
+          };
+        });
+        document.getElementById('next').onclick = async () => {
+          if (!preview) {
+            const drill = await postDrillChoice(token, 'connect', 'spotted');
+            if (!drill.ok) {
+              setError(drill.message);
+              return;
+            }
+            const data = await sendMessage(token, `channel:${channel}`);
+            if (!data.ok) {
+              setError(data.message);
+              return;
+            }
+          }
+          goLoading();
+        };
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

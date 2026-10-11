@@ -1,0 +1,32 @@
+---
+description: Fail-closed alias lock — never write banned English field/store/secret words into the live handoff or living map
+alwaysApply: true
+---
+
+# ChatGPT-visible handoff + map lock (2026-09-14)
+
+Operator lock: **nothing** in the banned English field / store / secret list may be written into:
+
+- `C:\laragon\www\project handoff.txt`
+- `C:\laragon\www\REPOSITORY-AND-DATABASE-MAP.txt`
+
+That is the whole ChatGPT-visible living pair. AUDIT is completed evidence, not this lock.
+
+## Before every save to those two files
+
+1. Write aliases only (**PW1**, **PW1-partial**, **MAIL1**, **P1** / **P1s**, **S1** / **S1s**, **R1**, **M1** / **M1s**, **P1X**, **VLT1**, **W1**, **A1**, **MASTER-1**, PAGE tokens).
+2. Event `type` / `element` keys in those files use aliases, not English field words.
+3. Run `milady/.cursor/check-chatgpt-visible-alias.ps1` after the edit. If it fails, fix the file. Do not leave a fail.
+4. Do not paste `.cursor/PRIVATE-ALIAS-MAP.txt` into either file.
+
+## Allowed leftovers in those files (do not expand)
+
+- Box key `cvault` (source key; not an English dest word)
+- Ordinary English “phrased”
+- Artisan / migrate / Host **db-seed** wording (not **S1**)
+
+## Must not
+
+- Do not put banned English into a “technical key” excuse in the handoff or map.
+- Do not “fix” AUDIT from this lock.
+- Do not rename source on disk from this lock.

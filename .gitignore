@@ -1,0 +1,62 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies
+/vendor
+/node_modules
+
+# Laravel
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+/storage/logs/*
+!/storage/logs/.gitkeep
+/storage/framework/cache/*
+!/storage/framework/cache/.gitkeep
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitkeep
+/storage/framework/testing/*
+!/storage/framework/testing/.gitkeep
+/storage/framework/views/*
+!/storage/framework/views/.gitkeep
+/bootstrap/cache/*
+!/bootstrap/cache/.gitkeep
+
+# Build / tooling
+/dist
+/npm-debug.log
+yarn-error.log
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Local dumps / deploy noise / runtime DB (not source)
+database_export.sql
+database/*.sqlite
+database/*.sqlite-*
+database/liveled_full_schema.sql
+.last_deploy
+*.sql.gz
+/storage/app/liveled_settings.json
+/storage/app/temp_*.php
+
+# Accidental junk filenames (if present)
+/count()
+/null])
+/toArray())
+
+# Cursor-private (never Git, never ChatGPT)
+/.cursor/PRIVATE-ALIAS-MAP.txt
+/.cursor/PRIVATE-HANDOFF-ORIGINAL-*
+/.cursor/PRIVATE-alias-*
+/.cursor/durable-recovery/

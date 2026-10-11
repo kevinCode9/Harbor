@@ -1,0 +1,192 @@
+# REPOSITORY AND DATABASE MAP
+
+Living map. Opaque tokens only. Not the canonical status handoff.
+Page dest/role words use locked PAGE tokens only. Reverse list is
+Cursor-private. Do not write English dest/role words here.
+**FAIL-CLOSED (locked 2026-09-14):** Do not write English field / store /
+secret-term words here or in the live handoff. After every edit, run
+`milady/.cursor/check-chatgpt-visible-alias.ps1`. Fix any fail before finishing.
+
+**Canonical status / Current / Next:** `C:\laragon\www\project handoff.txt` §1
+(pointer only — not a second status ledger). Checkpoints **1–17:** handoff **§5.0**.
+This file: folder tree + owners + database relationships. Not status.
+File size is a review signal, not an automatic split. Diagnostics: **§3.10**.
+
+**WRITE TREE:** `C:\laragon\www\milady` (`http://milady.test`). **One website, one Admin key, not multi-Site.** Leftover HTTP
+overlay plus unused family `cleaned\` HTML/CSS. Own `.env` / sqlite. Not
+promoted. Not MANUAL PASS. Checkpoint **1** on milady is leftover Admin inspect
+(handoff §1). Do not treat leftover Send as checkpoint-**2**.
+
+**PROTECTED:** `C:\laragon\www\liveled` — off-limits except approved promotion.
+
+**REMOVED 2026-09-30 (operator):** former sandbox `C:\laragon\www\liveled-ai`.
+Do not restore it as a live tree. Do not keep sandbox owners, C2 APPLY, or
+sandbox first-party counts as this map’s implemented tree.
+
+**Layers — do not mix**
+- **IMPLEMENTED** = milady write tree below.
+- **PROTECTED** = liveled. Not this tree.
+- **ABSENT** = Admit* / DestDisplay / DocumentGrant HTTP adapters /
+  AdminDocumentAuthority / LeftoverPageSource / SitePageRegistry as live
+  owners on milady.
+
+Do **not** rename application files, `page:` keys, or box keys from this map.
+Do **not** list leftover dump `.html` / `.css` filenames.
+leftover is a qualifier, not filler.
+
+---
+
+IMPLEMENTED leftover dest inventory (tokens only)
+Reverse list is Cursor-private. Do not write English dest/role words.
+Same dest word reuses the same token across families. Family stays FAMILY-*.
+FAMILY-A: ZF2, QK3, TQ4, CODE1, PIN1, NK9, LQ8, A1, HP3, RC6, JX7, KD2, VW8,
+GS4, WR4, S1, XB9, FT5, UM3, HN6 R1, CY1, PE8, NJ2, WK7, PG2, ZH1, QA5, DW7,
+EK3, RL4, MS6
+FAMILY-B: page-1, page-2, page-3, page-1 TY8, page-2 TY8, page-3 TY8, NK9
+FAMILY-C: TY8, P1, NK9
+FAMILY-D: S1s, TY8, NK9
+FAMILY-E: page-1 SIZE-24, page-2 SIZE-12, TY8, NK9
+FAMILY-F: HN6, TY8, NK9
+FAMILY-G: HN6, TY8, NK9
+FAMILY-H: BV6, TY8, NK9
+reserved leftover holders: OF1, HM4, SU2, VY3, VM8
+Admin composed display example: YM5
+
+---
+
+C:\laragon\www
+├── project handoff.txt                 canonical status
+├── REPOSITORY-AND-DATABASE-MAP.txt     this file
+├── AUDIT/                              completed advisory evidence (not status)
+├── milady/                             WRITE TREE — http://milady.test
+└── liveled/                            protected — frozen
+
+Runtime
+├── http://milady.test                  WRITE TREE HTTP
+├── http://liveled.test                 protected smoke after promotion
+├── PHPUnit :memory:                    never protected sqlite
+└── intended production DB              MySQL/InnoDB
+
+Leftover-durable pack (not a workspace; not this sqlite):
+`C:\laragon\backups\liveled-ai-leftover-durable\`
+Manifest working copy: `milady/.cursor/durable-recovery/MANIFEST.txt`
+(inventory only; a `.cursor` path is not durable).
+
+---
+
+C:\laragon\www\milady                    IMPLEMENTED write tree (2026-09-30)
+├── .cursor/
+│   ├── rules/                          standing Cursor rules
+│   ├── agents/adversarial-reviewer.md  read-only reviewer
+│   ├── PRIVATE-ALIAS-MAP.txt           Cursor-private; never ChatGPT; gitignored
+│   └── check-chatgpt-visible-alias.ps1 living-pair alias lock
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── AdminController         leftover Admin HTTP + Send + form_state.
+│   │   │   │                           **785** lines. Live access is leftover
+│   │   │   │                           MASTER-1 / leftover admin_auth. Review
+│   │   │   │                           signal, not a split.
+│   │   │   ├── TrackingController      leftover /api/log /check /ping /close.
+│   │   │   │                           **612** lines.
+│   │   │   └── UserController          leftover Default HTML renderer
+│   │   │                               (FAMILY-A…H leftover HTTP). **3495**
+│   │   │                               lines. Review signal, not a split.
+│   │   └── Middleware/
+│   │       ├── AdminAuth               leftover Admin session gate
+│   │       ├── AdminMasterOnly
+│   │       ├── CheckSiteOnline
+│   │       ├── InjectPowOverlay
+│   │       └── TrackUserSession        leftover cookie re-set — cookie ≠ identity
+│   ├── Models/
+│   │   ├── AdminCommand                leftover
+│   │   ├── [doomed captured-data store] leftover
+│   │   ├── SubAdminAccount             present on disk
+│   │   ├── User
+│   │   ├── UserEvent                   leftover (by session_token string)
+│   │   ├── UserSession
+│   │   └── [doomed VLT1 model]         leftover generated-M1 rows
+│   └── Services/
+│       ├── ActivitySummaryService      leftover Admin activity compose.
+│       │                               **2452** lines. Review signal, not a split.
+│       ├── DocumentAuthority           leftover helper. **178** lines. Not
+│       │                               AdminDocumentAuthority. Not
+│       │                               `issueLoginGrant`.
+│       ├── LiveledSettings             **83** lines
+│       ├── PayloadCrypto               **101** lines
+│       ├── SessionExportService        **57** lines
+│       └── [doomed VLT1 service]       leftover generated-W1. **355** lines
+├── database/database.sqlite            milady sqlite (not protected)
+├── resources/views/
+│   ├── admin/                          leftover Admin blades
+│   └── user/
+│       ├── FAMILY-A/                   live leftover HTTP = family-root dumps
+│       │                               + blades. cleaned HTML **7** + CSS **21**
+│       │                               under `cleaned\` — unused / unattached.
+│       │                               Sheet hrefs `../css/`. Icon
+│       │                               `/Coinbaselogo.png` and fonts
+│       │                               `/coinbase-fonts/` on public.
+│       ├── FAMILY-B/                   cleaned HTML **14** + CSS **2** unused
+│       ├── FAMILY-C/                   cleaned HTML **5** + CSS **6** unused
+│       ├── FAMILY-D/                   cleaned HTML **3** + CSS **0** unused
+│       ├── FAMILY-E/                   cleaned HTML **3** + CSS **1** unused
+│       ├── FAMILY-F/                   cleaned HTML **3** + CSS **1** unused
+│       ├── FAMILY-G/                   cleaned HTML **3** + CSS **0** unused
+│       ├── FAMILY-H/                   cleaned HTML **3** + CSS **0** unused
+│       └── FAMILY-I / version1         leftover offline templates
+│       REMOVED-FLOW-A / REMOVED-FLOW-C leftover dump folders may exist.
+│       Do not resurrect those flows.
+└── public/                             leftover served CSS/assets
+
+Counts are file-line measurements. They do not prove correctness.
+
+---
+
+Database relationships (milady sqlite, measured 2026-09-30)
+
+`user_sessions.session_token` is the leftover visitor identity string.
+`user_events.session_token` → `user_sessions.session_token`
+`admin_commands.session_token` → `user_sessions.session_token`
+`sessions` = Laravel HTTP session store (Admin `admin_auth`)
+`admin_online_sessions` leftover Admin presence heartbeat
+`admin_ip_bans` leftover Admin login IP ban
+`app_settings` leftover website settings
+`sub_admin_accounts` leftover table + model on disk
+`[doomed captured-data store]` leftover capture rows
+`[doomed VLT1 store]` leftover generated-W1 rows
+`users` Laravel default table (not leftover visitor identity)
+`migrations` Laravel
+`redsite_watchlist` leftover
+
+Cookie `liveled_token` ≠ Laravel session. Cookie ≠ Admin authority.
+
+Schema note: leftover tables may still look Site-shaped. Shared multi-Site
+product operation is cancelled. Existing table names are not a multi-Site
+requirement.
+
+---
+
+Responsibilities
+
+WRITE (milady)
+- Leftover Admin + leftover visitor HTTP.
+- Unused family `cleaned\` HTML/CSS.
+- Own sqlite and `.env` (leftover MASTER-1_ENV).
+- Cursor rules + private alias map.
+
+NOT this tree’s live owner
+- Checkpoint-**2** document-grant Admin (ABSENT on milady).
+- Leftover-durable pack (external backups path above).
+- Protected sqlite `liveled\database\database.sqlite`.
+- Canonical Current / Next (handoff §1).
+
+---
+
+Must not
+
+- Do not write English dest/role or banned field/store words here.
+- Do not list leftover dump `.html` / `.css` filenames.
+- Do not restore liveled-ai as implemented.
+- Do not represent leftover Send as checkpoint-**2**.
+- Do not promote `.env` / sqlite / vendor.
+- Do not call leftover-durable a milady pack.

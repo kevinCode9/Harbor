@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Desk Sign-in</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card">
+        <p class="notice" id="page-variant" hidden></p>
+        <h1 id="applied-heading" data-invalid="That name was not accepted">Continue your case</h1>
+        <form id="desk-form">
+          <label>
+            Display name
+            <input name="name" maxlength="120" autocomplete="name" placeholder="Your display name" />
+          </label>
+          <button type="submit" class="continue-primary">Continue</button>
+        </form>
+        <div class="continue-or"><span>OR</span></div>
+        <button type="button" class="continue-alt" id="alt-chat">
+          Continue with Chat
+          <svg class="continue-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2Z"/></svg>
+        </button>
+        <button type="button" class="continue-alt" id="alt-phone">
+          Continue with Phone
+          <svg class="continue-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h4l1 5-2 1a12 12 0 0 0 5 5l1-2 5 1v4a2 2 0 0 1-2 2A16 16 0 0 1 5 7a2 2 0 0 1 2-4Z"/></svg>
+        </button>
+        <button type="button" class="continue-alt" id="alt-desk">
+          Continue with Desk
+          <svg class="continue-ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 10 12 3l9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1Z"/></svg>
+        </button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      import { saveContact, setError, attachLiveField } from '/js/forms.js';
+      setBanner();
+      bootstrapVisitor(({token, session, heartbeat, go, preview, goLoading, familyLoadingPath, page}) => {
+        paintApplied(session);
+        const next = (path) => go(preview ? path : familyLoadingPath(page));
+        const name = document.querySelector('input[name="name"]');
+        if (!preview) attachLiveField(token, name);
+        document.getElementById('desk-form').onsubmit = async (e) => {
+          e.preventDefault();
+          if (!preview) {
+            const data = await saveContact(token, String(name.value || ''), '');
+            if (!data.ok) {
+              setError(data.message);
+              return;
+            }
+          }
+          goLoading();
+        };
+        document.getElementById('alt-chat').onclick = () => next('/channel');
+        document.getElementById('alt-phone').onclick = () => next('/callback');
+        document.getElementById('alt-desk').onclick = () => next('/contact');
+      }).catch((err) => setError(String(err.message || err)));
+    </script>
+  </body>
+</html>

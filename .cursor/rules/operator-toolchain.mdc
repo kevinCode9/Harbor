@@ -1,0 +1,13 @@
+---
+description: ChatGPT Astra High is PM with no repo; Cursor/Grok is the only agent with repo access
+alwaysApply: true
+---
+
+# Operator toolchain (shared — both workspaces)
+
+- **Product / Architecture Lead:** ChatGPT **GPT-6 Astra High**. Extra High only for irreversible / schema / auth / promotion / final realtime gates. ChatGPT does **not** touch the repo.
+- **Repo access:** this Cursor/Grok agent only (`milady` write tree; when separately approved, protected `liveled`). Do not treat Codex or ChatGPT as a second git author.
+- **Shared memory:** `C:\laragon\www\project handoff.txt` (canonical status, alias-only). Living owners/tree/DB map: `C:\laragon\www\REPOSITORY-AND-DATABASE-MAP.txt` (alias-only; not status). When proposing work that changes ownership, files, schema or relationships, include the required map update in the allowed scope. Perform it alongside the authorized handoff update when covered. If documentation changes are excluded or outside the allowed files, report the required reconciliation instead of silently writing them. An approved source change alone does not override documentation-access or write boundaries.
+- **Completed AUDIT evidence:** `C:\laragon\www\AUDIT` (alias-only live copies). Consult `00_INDEX.txt` and the relevant permitted evidence when a task depends on accepted architecture or completed-audit facts that need verification. This is not an every-turn reading requirement. Do **not** start another broad repository audit. Do **not** update AUDIT as living status. Do **not** access or supply to this reviewer the ChatGPT/Grok audit folders or `ORIGINAL-20260906-DO-NOT-SEND-TO-CHATGPT`. Newest operator decision + current handoff still win when later work superseded an audit-era fact. 05/06/07/09 are non-binding advisor/prompt. File 11 is advisory synthesis.
+- Alias reverse map (Cursor-private): `.cursor/PRIVATE-ALIAS-MAP.txt` in both trees. Do not paste it into ChatGPT prompts.
+- Original pre-alias handoff snapshot (Cursor-private): `milady/.cursor/PRIVATE-HANDOFF-ORIGINAL-20260906-DO-NOT-SEND-TO-CHATGPT.txt`. Do not send it to ChatGPT.

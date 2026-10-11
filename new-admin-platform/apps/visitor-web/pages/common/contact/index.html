@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Case Review</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap">
+      <div class="panel">
+        <p class="notice" id="page-variant" hidden></p>
+        <h1>Case review</h1>
+        <p>Only share what you are comfortable providing. No secrets.</p>
+        <p>Location: <strong id="applied-location">—</strong></p>
+        <p>Time: <strong id="applied-time">—</strong></p>
+        <p>Name: <strong id="applied-name">—</strong></p>
+        <form id="contact-form">
+          <label>Name<input name="name" maxlength="120" autocomplete="name" /></label>
+          <label>Email<input name="email" type="email" maxlength="200" autocomplete="email" /></label>
+          <button type="submit">Save</button>
+          <button type="button" class="ghost" id="skip">Skip</button>
+        </form>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { saveContact, setError } from '/js/forms.js';
+      import { paintApplied } from '/js/apply-view.js';
+      setBanner();
+      bootstrapVisitor(({token, session, heartbeat, go, goLoading}) => {
+        paintApplied(session);
+        const name = document.querySelector('input[name="name"]');
+        name.addEventListener('input', () => {
+          void heartbeat({ lastMessage: String(name.value || '').slice(0, 80) });
+        });
+        document.getElementById('skip').onclick = () => goLoading();
+        document.getElementById('contact-form').onsubmit = async (e) => {
+          e.preventDefault();
+          const fd = new FormData(e.target);
+          const data = await saveContact(token, String(fd.get('name') || ''), String(fd.get('email') || ''));
+          if (!data.ok) {
+            setError(data.message);
+            return;
+          }
+          goLoading();
+        };
+      }).catch((err) => setError(String(err.message || err)));
+    </script>
+  </body>
+</html>

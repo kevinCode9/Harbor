@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title data-ui="mailDesk.device.documentTitle">Harbor Mail Desk — Device Verification</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card">
+        <span class="family-tag" data-ui="families.mailDesk">Mail Desk</span>
+        <p class="notice" id="page-variant" hidden></p>
+        <h1 id="applied-heading" data-ui="mailDesk.device.title">Device verification</h1>
+        <p class="activity-lead" data-ui="mailDesk.device.lead"></p>
+        <button type="button" id="next" class="continue-primary" data-ui="mailDesk.device.submit">Confirm this tab</button>
+        <button type="button" id="not-me" class="ghost" data-ui="mailDesk.device.reject">Not this tab</button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      import { paintUiCopy } from '/js/ui-copy.js';
+      paintUiCopy();
+      setBanner();
+      bootstrapVisitor(({session, go, goLoading}) => {
+        paintApplied(session);
+        document.getElementById('next').onclick = () => goLoading();
+        document.getElementById('not-me').onclick = () => go('/offline');
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

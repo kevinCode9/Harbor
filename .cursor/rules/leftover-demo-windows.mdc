@@ -1,0 +1,64 @@
+---
+description: Authorized browser demonstrations — sequential where required; bounded waits; no accidental window or server pile
+alwaysApply: true
+---
+
+# Browser demonstrations
+
+This file is Cursor-only standing policy for **authorized** browser demonstrations and checks. Current / Next and the approved task determine work. This rule does not start a demonstration, CHECK, or saved-page cleanup.
+
+**Trees (2026-09-30):** Product write tree is `C:\laragon\www\milady`. Protected `liveled` remains frozen. Former sandbox `liveled-ai` removed 2026-09-30. Isolated leftover-family server notes below remain historical unless the approved check names milady.test.
+
+Write operator chat in normal English. Follow the applicable alias and access rules for each output. Never paste `.cursor/PRIVATE-ALIAS-MAP.txt`. Use page aliases unchanged.
+
+**Browser default:** Google Chrome for new browser tests. Do not start Edge unless the operator explicitly requests Edge. Preserve existing Edge evidence. Do not rerun a completed check solely because the preferred browser changed.
+
+## When a demonstration is authorized
+
+Run journeys **sequentially** when they do not need to be simultaneous. Use **bounded waits**.
+
+Use an ordinary resizable Chrome window unless the approved check specifies otherwise.
+
+Keep the **current approved scope**. Do not automatically run a historical test matrix.
+
+Keep temporary-entry restoration and any other restoration the approved procedure requires.
+
+Keep **one** isolated leftover-family server for the same isolated Site (example `127.0.0.1:5210`) unless the operator names more. Do not start a second leftover-family server for that same isolated Site.
+
+## Windows and profiles
+
+Keep only the windows and profiles needed for the approved scenario.
+
+Admin/visitor interaction, multiple Admins, or duplicate-tab checks may require simultaneous windows. Do not prohibit those when they are already in the approved check.
+
+Avoid accidental duplicates and unrelated windows. Do not accumulate a Chrome pile.
+
+## Observation, evidence and closing
+
+Save required evidence. Close a completed disposable window only after required observation and evidence collection.
+
+Do not close an awaiting-observation demo merely to start another journey. Leave the final requested demonstration available.
+
+Keep requested viewport or throttle settings through the observation that depends on them. Clear those temporary settings when that observation is finished or the approved procedure requires restoration. Do not alter watched conditions prematurely.
+
+## Updates
+
+Give a concise update after a meaningful result, or when a wait or failure changes the plan. Include dest, evidence path, and what happens next when that helps.
+
+Do not sit silent through a long batch. Do not force a repetitive report after every trivial step.
+
+Automated evidence, agent reports, and operator MANUAL PASS remain distinct. An agent update is not MANUAL PASS.
+
+## Teardown vs deletion
+
+Closing or stopping **identified task-owned** resources follows the approved procedure. Never broadly terminate the user’s browser.
+
+Profile or compare-out **deletion** requires authorization and the safeguards in `leftover-durable-storage.mdc` and `project-safety.mdc`. This rule does not independently authorize deletion.
+
+Before any authorized delete of a disposable profile or compare-out folder: keep the compact report, essential evidence, and the recovery manifest. Keep any demo still awaiting operator observation. A `.cursor` path alone is not durable.
+
+## Documentary provenance (not current work)
+
+Lesson (historical): FAMILY-A grant-mounted dest watches stalled a cleanup chat when one Edge window plus Admin ran every journey, extra Edge windows and duplicate 5210 servers piled up, and the agent stayed silent for the batch.
+
+Housekeeping APPLY/PASS fixture notes that once appeared here as a live end-of-run precondition are historical only. They do not select current work and do not authorize cleanup or deletion.

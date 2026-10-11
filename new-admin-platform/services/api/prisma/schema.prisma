@@ -1,0 +1,90 @@
+// Prisma schema mirrors the live pg schema managed by config/database.ts.
+// Runtime currently uses the pg Pool; Prisma client adoption is optional later.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Visitor {
+  id            String            @id @db.Uuid
+  token         String            @unique @db.VarChar(120)
+  name          String?           @db.VarChar(120)
+  currentPage   String            @default("/welcome") @map("current_page") @db.VarChar(255)
+  status        String            @default("connected") @db.VarChar(32)
+  ip            String?           @db.VarChar(64)
+  location      String?           @db.VarChar(255)
+  browser       String?           @db.VarChar(80)
+  device        String?           @db.VarChar(80)
+  startedAt     DateTime          @default(now()) @map("started_at") @db.Timestamptz
+  lastSeenAt    DateTime          @default(now()) @map("last_seen_at") @db.Timestamptz
+  metadata      Json              @default("{}")
+  caseNumber    String?           @map("case_number") @db.VarChar(32)
+  lastMessage   String?           @map("last_message")
+  contactName   String?           @map("contact_name") @db.VarChar(120)
+  contactEmail  String?           @map("contact_email") @db.VarChar(200)
+  publicAddress String?           @map("public_address") @db.VarChar(120)
+  caseStatus    String?           @default("OPEN") @map("case_status") @db.VarChar(40)
+  endedAt       DateTime?         @map("ended_at") @db.Timestamptz
+  activity      VisitorActivity[]
+  messages      SupportMessage[]
+  notes         InternalNote[]
+
+  @@index([status, lastSeenAt(sort: Desc)], map: "idx_visitors_status")
+  @@map("visitors")
+}
+
+model VisitorActivity {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  visitorId String   @map("visitor_id") @db.Uuid
+  eventType String   @map("event_type") @db.VarChar(80)
+  payload   Json     @default("{}")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  visitor   Visitor  @relation(fields: [visitorId], references: [id], onDelete: Cascade)
+
+  @@index([visitorId, createdAt(sort: Desc)], map: "idx_visitor_activity_visitor")
+  @@map("visitor_activity")
+}
+
+model AdminSetting {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  keyName   String   @unique @map("key_name") @db.VarChar(80)
+  value     Json     @default("{}")
+  updatedAt DateTime @default(now()) @map("updated_at") @db.Timestamptz
+
+  @@map("admin_settings")
+}
+
+model AdminKey {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  adminKey  String   @unique @map("admin_key") @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  active    Boolean  @default(true)
+
+  @@map("admin_keys")
+}
+
+model SupportMessage {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  visitorId  String   @map("visitor_id") @db.Uuid
+  authorRole String   @map("author_role") @db.VarChar(16)
+  body       String
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz
+  visitor    Visitor  @relation(fields: [visitorId], references: [id], onDelete: Cascade)
+
+  @@map("support_messages")
+}
+
+model InternalNote {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  visitorId String   @map("visitor_id") @db.Uuid
+  body      String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  visitor   Visitor  @relation(fields: [visitorId], references: [id], onDelete: Cascade)
+
+  @@map("internal_notes")
+}

@@ -1,0 +1,72 @@
+---
+description: Leftover recoveries are durable only when excluded from tmp cleanup, not publicly served, and backup-covered. A .cursor path is not enough.
+alwaysApply: true
+---
+
+# Leftover durable vs disposable
+
+This file is Cursor-only standing recovery/cleanup policy. Current / Next and latest explicit operator decisions select work.
+
+**Trees (2026-09-30):** Product write tree is `C:\laragon\www\milady` (`http://milady.test`). Protected `liveled` remains frozen. Former sandbox `liveled-ai` removed 2026-09-30. Leftover-durable pack stays `C:\laragon\backups\liveled-ai-leftover-durable\`. Manifest working copy: `milady/.cursor/durable-recovery/MANIFEST.txt` (inventory only; pack is durable).
+
+Write operator chat in normal English. Follow the applicable alias and access rules for each output. Never paste `.cursor/PRIVATE-ALIAS-MAP.txt`. ChatGPT-visible files stay alias-only.
+
+This rule governs recovery claims and authorized cleanup. It does not automatically require new packs, backup inspection or cleanup on ordinary conversation, review or unrelated work. Follow the authorized task’s recovery requirements and `project-safety.mdc`.
+
+Copying a recovery or card into `.cursor` does **not** make it durable.
+
+## Durable requires all three
+
+1. **Excluded from temporary cleanup** — not deleted with `tmp` Chrome profiles, compare-out, or one-shot CHECK scripts.
+2. **Not publicly served** — verified against the actual serving config, or stored outside every inspected webroot. “Not under `public/`” alone is not enough. A `.cursor` location alone proves neither non-public protection nor backup coverage. Recovery files (leftover dump HTML + unused CSS twins) have their durable home at `C:\laragon\backups\liveled-ai-leftover-durable\` once a verified pack exists.
+3. **Named backup / retention** — listed in the recovery manifest and covered by a verified leftover-durable pack. That pack protects against tmp cleanup. It does not protect against loss of the entire disk.
+
+If any one is missing, call it a **working copy** or **location-held copy**. Do not say durable.
+
+## Verification claims
+
+A matching archive checksum establishes archive integrity. It does not prove that each recovery file matched its original before modification or deletion.
+
+Where the approved task requires that comparison, record individual matches and the verification outcome while originals remain available.
+
+Never reconstruct missing historical proof. If a required twin or recovery is absent, say ABSENT. Do not invent replacement evidence for deleted recoveries. Historical PASS is not retained evidence and not available rollback.
+
+## Must (standing)
+
+- Before authorized deletion of disposable `tmp` output or browser profiles: keep the compact final report, essential evidence, and `milady/.cursor/durable-recovery/MANIFEST.txt`.
+- Keep any leftover-demo still awaiting operator observation until MANUAL PASS or the operator closes that demo. Removing a historical example from this rule does not authorize deleting an awaiting-observation demo.
+- When a recovery pair is in scope, record both twins separately (example shape: views + public). If one is absent, say ABSENT. Do not reconstruct a file and call it original recovery.
+- Record missing historical recoveries as loss. Do not reopen a recovery from documented loss.
+- Approval for a different task remains required where that task needs its own authorization. That is not a second approval solely to run already-agreed checks on the current task.
+
+## Must not (standing)
+
+- Do not treat `milady/.cursor/` as backup-covered or as “not publicly served” because it is outside `tmp` or outside `public/`.
+- Do not blanket-ignore `.cursor`. Do not make retaining `.cursor/rules` optional. Standing housekeeping ignores remain: `/tmp/`, `/.cursor/durable-recovery/`, verify/card/policy globs, and `/.cursor/*-housekeeping-correction-card.txt`.
+- Do not put recoveries or retain cards only in `tmp`.
+- Do not invent replacement evidence for deleted recoveries.
+- Do not delete an awaiting-observation demo to tidy disk.
+- Do not modify existing leftover-durable or protected backups as development.
+- Do not certify leftover-housekeeping helper behavior on a new runtime from a historical report. Other runtimes remain unverified.
+
+## Authorized housekeeping delete
+
+These limits apply only when cleanup is in the approved scope.
+
+`OWNED.txt` is an inventory, not deletion authority. Retain proof is `tmp\<run-id>\RETAIN.ok`. RunId must be one safe segment. RunRoot must sit strictly inside sandbox `tmp`, never `tmp` itself.
+
+Refuse traversal, outside paths, ancestor reparse, descendant junctions/symlinks, and failed or incomplete directory enumeration before delete. Failed/incomplete enumeration must `REFUSE ENUM` and must not `Remove-Item -Recurse` that target. Successful empty-directory listing may delete.
+
+Stop this run’s relevant browser/processes before cleanup. Scan-then-delete race remains a stated limitation. Do not describe the helper as safe against concurrent filesystem manipulation.
+
+Removing an old example from this rule does not authorize deletion of `tmp/719-*`.
+
+## Documentary provenance (not current work)
+
+These are retention and loss records. They are not Current / Next and do not authorize new APPLY, cleanup or page work.
+
+- First leftover-durable pack (verified location): `C:\laragon\backups\liveled-ai-leftover-durable\20260927-125645`. A `.cursor` path is still not this pack.
+- Retention exclusion: do not sweep pre-existing `tmp/719-*` from leftover-durable or housekeeping work unless a later authorized task explicitly covers those paths and any still-awaiting demo among them.
+- FAMILY-A LQ8 and FAMILY-A LQ8-NK9 recoveries are recorded historical loss. Do not reopen those pages from that loss. Do not invent replacement evidence.
+- FAMILY-A UM3 `27.css` twins (views + public): if that pair is assessed, record both separately; say ABSENT if one is missing; do not reconstruct. This is provenance for those files, not a live UM3 → HN6 sequence.
+- Housekeeping policy/implementation and fixture IDs (2026-09-27, including `720-hk-fixture-20260927-133203` and `720-hk-fixture-20260927-134903`) are historical reports only. They do not select current work and do not prove the helper on other runtimes.

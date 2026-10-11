@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Confirm Notice</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card continue-card--wide">
+        <p class="notice" id="page-variant" hidden></p>
+        <p class="case-step">Case step · Confirm notice</p>
+        <h1 id="applied-heading" data-invalid="Please confirm this desk">Confirm this desk</h1>
+        <p class="activity-lead">An agent asked you to confirm you are still on this support tab.</p>
+        <div class="case-slots">
+          <div class="case-slot"><strong>Desk confirmation</strong><span>Continue confirms you are still on this tab</span></div>
+        </div>
+        <p class="case-note">No password, code, or document is collected here.</p>
+        <button type="button" class="continue-primary" id="next">Continue</button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      import { postDrillChoice, setError } from '/js/forms.js';
+      setBanner();
+      bootstrapVisitor(({token, session, preview, goLoading}) => {
+        paintApplied(session);
+        document.getElementById('next').onclick = async () => {
+          if (!preview) {
+            const data = await postDrillChoice(token, 'warning', 'spotted');
+            if (!data.ok) {
+              setError(data.message);
+              return;
+            }
+          }
+          goLoading();
+        };
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

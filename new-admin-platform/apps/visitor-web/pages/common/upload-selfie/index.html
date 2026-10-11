@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Photo review</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card continue-card--wide">
+        <p class="notice" id="page-variant" hidden></p>
+        <p class="case-step">Case step · Photo review</p>
+        <h1 id="applied-heading" data-invalid="That photo review step was not accepted">Upload selfie</h1>
+        <p class="case-checklist-title">A real photo check might ask for a selfie. This Harbor step does not.</p>
+        <ul class="case-checklist">
+          <li>Camera capture is disabled here</li>
+          <li>No image file is accepted</li>
+          <li>Nothing is stored from this page</li>
+        </ul>
+        <form id="step-form" class="case-slots" autocomplete="off">
+          <input class="case-slot" type="file" name="selfie" accept="image/*" capture="user" aria-label="Photo / selfie" />
+          <button type="submit" class="continue-primary" id="next">Continue</button>
+        </form>
+        <p class="case-note">Training UI only — the chosen file is cleared and never uploaded.</p>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      setBanner();
+      bootstrapVisitor(({session, goLoading}) => {
+        paintApplied(session);
+        document.getElementById('step-form').onsubmit = (e) => {
+          e.preventDefault();
+          e.target.reset();
+          goLoading();
+        };
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

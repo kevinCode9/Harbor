@@ -1,0 +1,62 @@
+---
+description: Independent review after implementation
+alwaysApply: true
+---
+
+# Independent review after implementation
+
+Independent review checks whether the approved change satisfies its requirements and preserves relevant behavior. It does not authorize changes or replace automated checks or operator MANUAL PASS.
+
+## When review is required
+
+Require independent review for changes affecting authority, Site/session isolation, persistence, lifecycle transitions, ordering, recovery, navigation control, or other material product behavior.
+
+For low-risk presentation-only changes, appropriate focused checks and operator observation may suffice unless the approved task explicitly requires independent review. Judge risk by behavior and impact, not file count or diff size.
+
+Do not automatically invoke implementation review for conversation, inspection, proposals or documentation-only changes.
+
+## Before implementation
+
+Inspect the authorized working-tree state and establish how existing work is distinguished from this batch. Preserve the recovery required by the approved task.
+
+Do not create commits without explicit authorization. A dirty working tree does not automatically require a checkpoint-commit permission round. Identify a concrete recovery or change-isolation problem before stopping.
+
+Do not label an unverified baseline “known-good.”
+
+## Review inputs and boundaries
+
+Give the reviewer:
+- The approved outcome, allowed files, approach, preserved contracts, environment and verification scope.
+- The actual changes and relevant callers.
+- Available check results, known failures, limitations and applicable baseline evidence.
+
+The reviewer is read-only and must remain within authorized access. Start from the batch’s changes and inspect relevant code and handoff sections as needed. Do not conduct a general audit or require rereading the entire handoff.
+
+Latest explicit operator decisions govern conflicting historical instructions. Documentation is not proof that implementation works.
+
+Run agreed checks and report their outcomes. Review may examine known failures; do not conceal them or claim completion merely because review ran.
+
+## Findings and fixes
+
+Classify findings as:
+- Confirmed in-scope defect.
+- Missing evidence or unresolved concern.
+- Existing/out-of-scope issue.
+- Optional improvement.
+- Dismissed finding, with the reason.
+
+The implementer verifies findings against evidence. Do not treat every reviewer suggestion as a required change, or dismiss an unresolved concern merely because reproduction is incomplete.
+
+Follow approve-first-workflow’s bounded authorization. Necessary fixes inside every approved boundary may proceed without another APPROVE. Material scope changes require renewed authorization.
+
+An out-of-scope finding does not authorize adjacent repairs. If it concretely blocks correctness or safe completion of the approved work, explain that dependency.
+
+## Verification and completion
+
+After a fix, run checks appropriate to the affected behavior. Repeat independent review only where changed behavior, unresolved findings or new risk justify it; focus the follow-up accordingly.
+
+Do not restart the whole review automatically or add reviewers merely to obtain unanimous approval.
+
+Report confirmed defects, unresolved limitations, dismissed findings and actual fixes. Required unresolved defects or verification failures must remain visible.
+
+A clean review is not MANUAL PASS. The operator’s acceptance remains separate.

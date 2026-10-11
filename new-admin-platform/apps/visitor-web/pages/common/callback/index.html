@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Agent Callback</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card continue-card--wide">
+        <p class="notice" id="page-variant" hidden></p>
+        <p class="case-step">Case step · Callback</p>
+        <h1 id="applied-heading" data-invalid="That callback step was not accepted">Agent callback</h1>
+        <p class="activity-lead">An agent can call during this window. This is not remote desktop access.</p>
+        <div class="case-slots">
+          <div class="case-slot"><strong>Window</strong><span><strong id="applied-callback">—</strong></span></div>
+        </div>
+        <p class="case-note">No access code or remote-control tool is requested here.</p>
+        <button type="button" class="continue-primary" id="next">Continue</button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      setBanner();
+      bootstrapVisitor(({session, go, goLoading}) => {
+        paintApplied(session);
+        document.getElementById('next').onclick = () => goLoading();
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

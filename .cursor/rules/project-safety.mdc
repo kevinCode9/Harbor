@@ -1,0 +1,143 @@
+---
+description: Permanent post-incident safety — protected vs AI sandbox, DB fail-closed, full checkpoint definition
+alwaysApply: true
+---
+
+# Permanent project safety
+
+A fresh conversation must follow this file even without prior chat history.
+
+Current work follows the maintained Current / Next and latest explicit operator decisions. This rule itself grants no source-edit or promotion authority.
+
+## Protected locations
+
+- **Protected app:** `C:\laragon\www\liveled`
+- **Product write tree (2026-09-30):** `C:\laragon\www\milady` (`http://milady.test`)
+- **Protected backups:** `C:\laragon\backups\liveled`
+- **Canonical handoff:** `C:\laragon\www\project handoff.txt` (not `liveled\PROJECT_HANDOFF.md`)
+
+Authorized development uses `C:\laragon\www\milady`. The former sandbox `liveled-ai` was removed 2026-09-30 (operator). Historical leftover-durable packs stay under `C:\laragon\backups\liveled-ai-leftover-durable\`. The write tree must stay isolated from the protected app. This requirement does not prove that isolation is currently intact.
+
+Never treat the protected app as an experimental or test workspace.
+
+Never modify backup contents as part of development.
+
+External/removable drives are off-limits unless the operator explicitly names and approves the exact drive and path. Do not infer a backup destination from attached drives.
+
+## Database safety
+
+Protected SQLite: `C:\laragon\www\liveled\database\database.sqlite`
+
+Automated tests must never use that file.
+
+Never run destructive-capable test or database operations unless the resolved DB path has first been proven to be an approved disposable sandbox or test DB.
+
+Fail closed if the DB path or environment is ambiguous.
+
+The protected environment must never receive:
+
+- `RefreshDatabase`
+- `migrate:fresh`
+- `migrate:refresh`
+- `db:wipe`
+- destructive schema reset
+- destructive recovery operation
+- PHPUnit configured against protected SQLite
+
+Never run `phpunit --no-configuration` against the protected project.
+
+`phpunit.xml` alone is not a sufficient safety barrier.
+
+Any future test kill-switch must remain fail-closed.
+
+## Write-tree databases
+
+`milady` must have its own `.env`, its own `APP_KEY`, its own DB, and its own writable runtime state.
+
+Do not use a copy of the protected DB as the live write-tree DB.
+
+Automated tests use `:memory:` or an explicitly approved disposable test DB.
+
+No symlink, junction, or runtime config may point write-tree database operations back into the protected app.
+
+## Authorized development
+
+Authorized development uses `C:\laragon\www\milady`. Routine in-bound preparation and agreed checks may proceed under approve-first-workflow.
+
+1. Change product/source only in `milady`, and only when the approved scope includes that source work.
+2. Automated tests only against `:memory:` or a disposable test DB. Never protected sqlite.
+3. Named operator-test reference: `http://milady.test`. Presence of this URL does not authorize opening or testing it.
+4. Named protected-smoke reference: `http://liveled.test`. Presence of this URL does not authorize opening or testing it.
+
+Write-tree APPLY, successful checks and MANUAL PASS do not authorize promotion, protected migrations, commits, recovery bundles or canonical documentation changes. Those actions must be explicitly covered by the approved scope.
+
+Never promote `.env`, sqlite, `vendor`, cache/runtime. Never copy write-tree sqlite into protected liveled.
+
+## Safety work inside an approved promotion, migration or checkpoint
+
+When the approved scope includes promotion, a protected migration or a checkpoint, the plan must identify the affected environments, allowed paths and required recovery operations.
+
+The operation’s risk determines the required recovery package. The approved plan must include that package before execution. If a risky/milestone operation requires a full checkpoint and that checkpoint is not authorized, stop the operation and explain the missing scope; do not proceed with reduced recovery merely because the checkpoint was omitted.
+
+Once those safeguards are included, perform them without separate approval rounds. Complete and verify required pre-change recovery before protected mutation.
+
+If required safety work falls outside the approved boundaries, explain the specific missing authorization before proceeding. Do not improvise extra backup, promotion, commit or handoff work.
+
+**Normal / low-risk promotion** (when that promotion is in the approved scope): Git commit + verified Git bundle + verified SQLite backup + canonical handoff update.
+
+**Risky / milestone** (DB migrations, dependency changes, large refactors, filesystem risk) requires a full **CHECKPOINT**. Do not run that operation unless the approved scope includes the full checkpoint:
+
+1. Git commit
+2. Verified Git bundle
+3. Verified SQLite backup
+4. Full project snapshot
+5. Canonical handoff copy
+6. Hash and integrity verification
+
+A Git commit alone is not a complete project checkpoint.
+
+SQLite backup: DB writers stopped, or another explicitly approved SQLite-safe mechanism. `PRAGMA quick_check;` and `PRAGMA integrity_check;` must both return `ok`. Never overwrite prior checkpoints.
+
+After an approved protected PASS that includes the matching recovery work: commit only the approved protected source (explicit paths only); create/update the recovery Git bundle; create a verified SQLite backup; update the canonical handoff only if that documentation change is in the approved scope.
+
+## Git safety
+
+Do not use `git add .` or `git add -A` for protected checkpoint commits.
+
+Stage explicit reviewed source paths only.
+
+Never commit `.env`, SQLite DB/WAL/SHM, incident recovery files, quarantine, logs/cache, secrets, or runtime artifacts.
+
+Review `git diff --cached` before every checkpoint commit.
+
+Do not create commits unless the approved scope includes that commit.
+
+## Promotion safety
+
+Never replace the protected project wholesale with the sandbox without an explicit approved recovery or promotion plan.
+
+Before an authorized promotion, review the exact tracked-source diff to be promoted. Promote only that reviewed, approved diff within the allowed paths. Sandbox PASS does not substitute for this review.
+
+## Migration safety
+
+When a protected migration is in the approved scope: rehearse in sandbox first → verify → complete and verify required pre-change recovery → run only the reviewed migration on protected DB → verify DB → operator smoke only if that smoke is in the approved scope.
+
+Never rehearse against protected `database.sqlite`. Never copy `sandbox.sqlite` into protected liveled.
+
+Review existing rows, backfill, constraints, rollback, partial failure, and recovery path.
+
+## Fail-closed
+
+If a potentially unsafe operation’s relevant target, isolation or required recovery is unproven: **stop that operation. Report the concrete uncertainty. Do not improvise.**
+
+Resolve the uncertainty through authorized checks where possible. Do not expand into unrelated inspection or a general audit.
+
+## Operator authority
+
+The operator's newest explicit instruction wins.
+
+Do not access an external or removable drive merely because it exists.
+
+Do not widen approved scope.
+
+APPLY is not CHECK. APPLY is not MANUAL PASS. Do not automatically promote or advance a stage.

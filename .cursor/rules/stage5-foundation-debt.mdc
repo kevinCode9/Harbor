@@ -1,0 +1,86 @@
+---
+description: Leftover foundation is not assumed clean; repair only for concrete product reasons with an ownership map
+alwaysApply: true
+---
+
+# Leftover foundation is not assumed clean
+
+The leftover app under authorized work may be rushed, oversized, or have too many writers. Do not treat that base as finished or tidy.
+
+Current work follows the maintained Current / Next and latest explicit operator decisions. Existing stage labels remain traceability pending reassessment. Preserve closed scopes and their evidence. Do not treat old assignments as a newly approved sequence.
+
+## On every authorized implementation task
+
+1. Work the approved slice only. Smallest correct change.
+2. Raise a foundation issue when evidence shows a concrete defect, competing responsibility or limitation affecting the approved slice or an accepted later requirement. Explain the impact and owner briefly. Size, age or awkwardness alone does not require a debt report. If the owner or sequence is not established, record “owner/sequence pending reassessment”; do not invent a stage assignment.
+3. APPLY is not PASS. Later authorized work may still correct the foundation when evidence shows it. That is not a requirement to park every repair on a later numbered checkpoint.
+
+## When leftover cleanup is appropriate
+
+- It **is** the approved slice (the leftover change is the work, not a side tidy).
+- It **blocks** the approved slice (the leftover writer would keep winning).
+- The operator **explicitly** widens scope after the debt was noted.
+
+## When it is not
+
+- “While we are here” refactors of adjacent files, appearance rewrites, extra helpers, or Domain/ extracts.
+- Work that belongs to another established owner/dependency must not be pulled into this slice without authorization.
+- Expanding the current slice to fix noted debt without an explicit operator yes.
+
+Prefer: note it → keep the slice small → own the cleanup where Current / Next and the operator assign it. If that assignment is not established, record “owner/sequence pending reassessment.”
+
+## Repair foundations for concrete product reasons
+
+Do not refactor merely because code is old, large or untidy. Do not preserve weak foundations merely because they already exist.
+
+For each proposed foundation change, explain:
+
+- The actual defect, conflicting responsibility or limitation.
+- The accepted product requirement it affects.
+- Why the change belongs in this authorized checkpoint.
+- The dependencies and assumptions behind expected future usefulness. Do not promise that all work will survive unchanged.
+
+If the work belongs elsewhere, cite its established owner/dependency when known. Otherwise record “owner/sequence pending reassessment”; do not invent a stage assignment.
+
+A discovered blocker requires diagnosis and an authorization check. Necessary corrections inside every approved boundary may proceed under approve-first-workflow. A blocker outside those boundaries requires an explained scope change and renewed authorization.
+
+Apply stage-checkpoint-slicing’s temporary-work test: concrete blocker, minimum scope, cost and replacement trigger.
+
+Do not silently expand scope.
+
+## Show which files and responsibilities change
+
+When a foundation change is proposed, provide a concise current → proposed ownership map:
+
+- Files/methods being reduced, split, retained or retired.
+- Responsibilities removed from each existing file.
+- The destination owner and callers that will use it.
+- Competing writers or duplicate behavior that will stop.
+
+Do not invent file splits to satisfy this rule. If no split is justified, say so. Moving code into another oversized service or wrapping unchanged competing behavior is not substantive repair.
+
+## Preserve lasting product rules
+
+HTTP and later realtime adapters invoking shared product rules is a target requirement. It is not automatic authority to extract modules during unrelated work. Page scripts handle presentation and lifecycle; they must not independently create sessions, grant authority or install competing transport loops.
+
+Do not optimize doomed polling or build elaborate compatibility machinery merely to preserve rushed saved-page internals. Preserve intended appearance and product behavior; replace implementation details when justified.
+
+## Raise supported recommendations and seek useful review
+
+If you identify another foundation, schema, caller or future-compatibility issue, state the evidence, impact, recommendation and established owner/dependency when known. Otherwise record “owner/sequence pending reassessment.” Distinguish a current blocker from later work.
+
+Ask Astra for an opinion when a meaningful architectural tradeoff needs consultation. That consultation is distinct from post-implementation independent review. Supply the relevant repository facts/excerpts and your recommendation. Do not substitute repeated confirmation requests for engineering judgment, and do not send messages externally without authorization. Prompt format and model routing stay in `chatgpt-pm-model-routing.mdc`.
+
+If repository details are uncertain, identify what must be established. Do not guess. Further inspection must remain within the operator’s authorized scope.
+
+## Distinguish implementation from proof
+
+Separate proposed behavior, inspected findings, automated results and browser evidence. State what the change proves and what remains unverified. File counts, new folders and passing tests alone do not mean the foundation is fixed.
+
+Keep this reporting concise and proportional. It must support progress, not create another full proposal cycle.
+
+## Status and pointers (not copied here)
+
+Status lives only in canonical `C:\laragon\www\project handoff.txt` (maintained Current / Next and AUTHORITATIVE NOW). Latest explicit operator decisions win. Do not copy page PASS, CLOSED lists, or dump-file keep-or-delete lists into this rule.
+
+Authorization: `approve-first-workflow.mdc`. Checkpoint boundaries and the temporary-work test: `stage-checkpoint-slicing.mdc`. Post-implementation independent review: `adversarial-review-after-impl.mdc`. Leftover page-cleanup workflow: `leftover-page-cleanup.mdc`.

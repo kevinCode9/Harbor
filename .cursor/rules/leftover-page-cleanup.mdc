@@ -1,0 +1,90 @@
+---
+description: Saved-page cleanup preservation and focused verification — does not select or start a cleanup
+alwaysApply: true
+---
+
+# Saved-page cleanup
+
+Workflow for operator-authorized saved-page dump or utility cleanup. Current / Next and latest explicit operator decisions determine whether cleanup is active. This rule applies only to authorized cleanup. It does not select the next task, authorize a page, a shared-shell or runtime edit, automatic MANUAL PASS, or promotion.
+
+**Trees (2026-09-30):** Product write tree is `C:\laragon\www\milady`. Protected `liveled` remains frozen. Former sandbox `liveled-ai` removed 2026-09-30. Saved-page APPLY still needs a named card and literal APPROVE on the write tree.
+
+APPROVE still gates the first APPLY. APPLY is not PASS.
+
+Do not reopen closed pages from this rule. Historical: FAMILY-A loading cleanups CLOSED 2026-09-13 (handoff). That close is not a general licence and is not current work.
+
+Use page aliases unchanged (**FAMILY-A**…**FAMILY-I**, locked PAGE tokens). Do not decode aliases, rename source, or rewrite historical evidence.
+
+In ordinary prose say **saved-page cleanup**, **original saved-page dump**, **cleaned HTML**, **grant-mount path**, and **legacy HTTP path**. Do not prefix ordinary nouns or actions with leftover. leftover remains a dump/compose qualifier only.
+
+Do not prescribe Blade, inline CSS, external modules, a shared shell, or a runtime replacement as a universal solution.
+
+## Before an authorized page or coherent checkpoint
+
+Reuse recorded, settled requirements for that page or checkpoint: what controls should do, what Admin needs to see, and what information needs saving. Ask only about material missing or conflicting behavior.
+
+Related pages may share one coherent approved checkpoint where a concrete dependency, risk, independently useful outcome or authorization boundary justifies it.
+
+Compare those requirements with the actual dump/compose writers. Preserve behavior covered by the approved task. Change logging only when that change is explicitly inside the approved card. Do not turn a presentation cleanup into a backend or realtime redesign.
+
+Keep the existing schema and historical records. That does not mean preserving every unwanted future write.
+
+**Historical, not generalizable:** FAMILY-A ZH1’s approved exception (stop creating new Continue-click rows; do not delete old rows; do not remove landing confirmation) is that page’s card only.
+
+Later storage and realtime questions stay later unless they block the approved outcome.
+
+## Preservation vs new work vs existing gaps
+
+Preserve behavior covered by the approved task.
+
+New functionality is out of scope unless the approved card includes it.
+
+Record existing failures and pre-existing gaps separately. Do not silently repair them. If an existing gap materially blocks the approved outcome, explain the dependency and the authorization needed.
+
+## Before removing a utility dump
+
+Inspect the required baseline styles the original saved-page dump actually applied (preflight and used utilities), not only the classes still named in markup.
+
+Preserve, unless the approved card explicitly changes them:
+
+- cascade specificity
+- shorthand / longhand order
+- height chains (`html` / `body` / fill wrappers)
+- responsive boundaries
+- body margins
+- line-height
+- image / SVG display behaviour
+
+A focused replacement that drops an unused dump often also drops those baselines. After dest `replaceChild`, the page may then wait on styles that are not yet applied. That is a preservation defect, not a new design, and not a requirement to introduce a shared family shell.
+
+## Delivery paths and verification
+
+Establish which delivery paths the change affects. Preview, kernel delivery, grant-mount path, legacy HTTP path, and visitor interaction prove different things. Do not substitute one for another.
+
+When the grant-mount path is affected, verify the actual grant-mounted destination, not only a template-plus-shell preview. When legacy HTTP behavior is affected, verify the relevant legacy HTTP path.
+
+Compare both the loading transition and the settled layout where those are in scope — especially before vs after external styles arrive.
+
+DOM presence, a screenshot, or harness completion is not visible readiness. Measure transferred bytes when assessing size reduction. Measure readiness separately when assessing loading.
+
+## Focused checks
+
+When defining the approved scope, select focused checks according to affected behavior and risk.
+
+Keep transition, settled layout, relevant breakpoints, and required interaction checks where applicable. Use normal and slow conditions when those conditions matter to the approved outcome.
+
+Reuse established checks proportionally. Do not automatically run a full matrix. Do not run these tests during documentation-only review.
+
+## Defects found during authorized cleanup
+
+Follow approve-first-workflow’s complete authorization boundaries (named outcome, allowed files, agreed approach, preserved contracts, environment and focused verification) — not merely “same files.”
+
+Correct in-bound regressions, including defects introduced by the approved change, and rerun the affected agreed checks without another approval.
+
+If the needed change is a material scope change, explain it and obtain renewed authorization. That includes changing a settled product requirement.
+
+Report remaining uncertainty honestly. Do not promise every defect can be caught.
+
+## Recovery
+
+Follow leftover-durable-storage.mdc and project-safety.mdc for applicable recovery and cleanup requirements. This rule does not itself authorize deletion of dumps, assets, backups or retained evidence.

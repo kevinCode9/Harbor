@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Case complete</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card continue-card--wide">
+        <p class="notice" id="page-variant" hidden></p>
+        <p class="case-step">Case step · Complete</p>
+        <h1 id="applied-heading" data-invalid="That completion step was not accepted">Case complete</h1>
+        <p class="activity-lead">This support case step is finished.</p>
+        <div class="case-slots">
+          <input type="text" class="case-slot" placeholder="Case complete">
+        </div>
+        <button type="button" class="continue-primary" id="next">Continue</button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      setBanner();
+      bootstrapVisitor(({session, go, goLoading}) => {
+        paintApplied(session);
+        document.getElementById('next').onclick = () => goLoading();
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

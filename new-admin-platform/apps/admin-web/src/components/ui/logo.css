@@ -1,0 +1,41 @@
+.logo,
+.harbor-logo {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.logo::before,
+.harbor-logo::before {
+  content: "";
+  position: absolute;
+  width: 46%;
+  height: 56%;
+  border-radius: 50%;
+  background: #000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo::after,
+.harbor-logo::after {
+  content: "";
+  position: absolute;
+  width: 32%;
+  height: 24%;
+  background: #000;
+  right: -1px;
+  top: 38%;
+}
+
+.logo-lg,
+.harbor-logo.lg {
+  width: 40px;
+  height: 40px;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Harbor Mail Desk — 2-step</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap">
+      <div class="panel">
+        <span class="family-tag">Mail Desk</span>
+        <p class="notice" id="page-variant" hidden></p>
+        <h1 id="applied-heading">2-step verification</h1>
+        <p>Confirm you are still on this Mail Desk tab. No codes are collected here.</p>
+        <button type="button" id="next">Continue</button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      setBanner();
+      bootstrapVisitor(({session, go, preview, goLoading}) => {
+        paintApplied(session);
+        document.getElementById('next').onclick = () => if (preview) go('/demo/mail/authenticator'); else void goLoading();
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

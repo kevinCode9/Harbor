@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#1f243d">
+<head>
+<meta charset="utf-8"/>
+<style>html,body{background:#1f243d}</style>
+<link rel="icon" href="assets/exodus-icon.png"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"/>
+<title>Exodus</title>
+<style>
+html,body{margin:0;height:100%;background:#1f243d;color:#fff;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}
+#root{height:100%;background:#1f243d}
+.ex-shell{position:relative;height:100%;width:100%;background:#1f243d;color:#fff;overflow:hidden}
+.ex-inner{display:flex;height:100%;width:100%;align-items:center;justify-content:center;background:linear-gradient(to bottom,#16172b,transparent)}
+.ex-panel{position:relative;z-index:10;display:flex;width:100%;flex-direction:column;align-items:center;gap:8px;padding:48px 32px;box-sizing:border-box}
+.ex-title{margin:0;text-align:center;font-size:24px;font-weight:400;line-height:1.25}
+.ex-sub{margin:0;padding:0 32px;text-align:center;font-size:14px;font-weight:400;color:#fff;opacity:.5;line-height:1.4}
+.ex-spin{margin-top:32px;width:48px;height:48px;animation:ex-spin 1s linear infinite}
+@keyframes ex-spin{to{transform:rotate(360deg)}}
+.ex-blob{pointer-events:none;position:absolute;bottom:0;left:0;width:100%;height:auto;z-index:0}
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="ex-shell">
+    <div class="ex-inner">
+      <div class="ex-panel">
+        <div class="ex-title">Disconnecting your wallet</div>
+        <div class="ex-sub">Please wait while we disconnect your wallet. This may take a few seconds.</div>
+        <svg class="ex-spin" fill="none" height="48" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="48" aria-hidden="true">
+          <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+        </svg>
+      </div>
+    </div>
+    <svg class="ex-blob" fill="none" viewBox="0 0 360 479" aria-hidden="true">
+      <g opacity="0.56">
+        <g filter="url(#ld-baa)">
+          <ellipse cx="498.915" cy="585.228" fill="#4D3589" rx="417.444" ry="380.772"></ellipse>
+        </g>
+        <g opacity="0.75">
+          <g filter="url(#ld-bgb)">
+            <ellipse cx="-153.771" cy="464.223" fill="#0025CE" rx="398.392" ry="210.783" transform="rotate(10.54 -153.771 464.223)"></ellipse>
+          </g>
+          <g filter="url(#ld-bgc)">
+            <path d="M144.424 458.152c-341.813-18.038-447.086-340.128-565.962-330.96-149.436 11.525-121.593 313.639 0 428.75 143.324 135.685 797.604-85.566 565.962-97.79Z" fill="#00EAFF"></path>
+          </g>
+        </g>
+      </g>
+      <defs>
+        <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="1128.26" id="ld-baa" width="1201.6" x="-101.885" y="21.099">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+          <feGaussianBlur result="effect1_foregroundBlur" stdDeviation="91.679"></feGaussianBlur>
+        </filter>
+        <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="928.409" id="ld-bgb" width="1276.14" x="-791.839" y="0.018">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+          <feGaussianBlur result="effect1_foregroundBlur" stdDeviation="122.238"></feGaussianBlur>
+        </filter>
+        <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="717.288" id="ld-bgc" width="961.503" x="-645.679" y="4.762">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+          <feGaussianBlur result="effect1_foregroundBlur" stdDeviation="61.119"></feGaussianBlur>
+        </filter>
+      </defs>
+    </svg>
+  </div>
+</div>
+<!--[[BRIDGE]]-->
+</body>
+</html>

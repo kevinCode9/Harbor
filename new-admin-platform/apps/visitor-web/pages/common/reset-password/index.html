@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Reset password</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card continue-card--wide">
+        <p class="notice" id="page-variant" hidden></p>
+        <p class="case-step">Case step · Reset password</p>
+        <h1 id="applied-heading" data-invalid="That reset step was not accepted">Reset your password</h1>
+        <p class="case-checklist-title">Be sure a real reset would include the following requirements:</p>
+        <ul class="case-checklist">
+          <li>A minimum of 8 characters</li>
+          <li>Have both uppercase and lowercase letters</li>
+          <li>Must include a number</li>
+          <li>Include at least one special character</li>
+        </ul>
+        <form id="step-form" class="case-slots" autocomplete="off">
+          <input class="case-slot" type="password" name="current" placeholder="Confirm current password" autocomplete="current-password" />
+          <input class="case-slot" type="password" name="password" placeholder="New password" autocomplete="new-password" />
+          <input class="case-slot" type="password" name="confirm" placeholder="Confirm new password" autocomplete="new-password" />
+          <button type="submit" class="continue-primary" id="next">Continue</button>
+        </form>
+        <p class="case-note">Training UI only — Harbor does not accept or store password values from this step.</p>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      setBanner();
+      bootstrapVisitor(({session, goLoading}) => {
+        paintApplied(session);
+        document.getElementById('step-form').onsubmit = (e) => {
+          e.preventDefault();
+          e.target.reset();
+          goLoading();
+        };
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

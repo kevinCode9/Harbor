@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title data-ui="mailDesk.code.documentTitle">Harbor Mail Desk — App Code Step</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card">
+        <span class="family-tag" data-ui="families.mailDesk">Mail Desk</span>
+        <p class="notice" id="page-variant" hidden></p>
+        <h1 id="applied-heading" data-ui="mailDesk.code.title" data-ui-attr="data-invalid:mailDesk.code.invalidHeading">
+          App code step
+        </h1>
+        <p class="activity-lead">
+          <span data-ui="mailDesk.code.lead"></span>
+          <span id="applied-tail"></span>
+        </p>
+        <form id="code-form">
+          <div class="digit-row" id="digit-row">
+            <input class="digit" maxlength="1" inputmode="text" autocomplete="off" aria-label="Case suffix character 1" />
+            <input class="digit" maxlength="1" inputmode="text" autocomplete="off" aria-label="Case suffix character 2" />
+            <input class="digit" maxlength="1" inputmode="text" autocomplete="off" aria-label="Case suffix character 3" />
+            <input class="digit" maxlength="1" inputmode="text" autocomplete="off" aria-label="Case suffix character 4" />
+            <input class="digit" maxlength="1" inputmode="text" autocomplete="off" aria-label="Case suffix character 5" />
+            <input class="digit" maxlength="1" inputmode="text" autocomplete="off" aria-label="Case suffix character 6" />
+          </div>
+          <button type="submit" class="continue-primary" data-ui="mailDesk.code.submit">Continue</button>
+        </form>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      import { attachLiveField, setError, looksLikeSecretMaterial } from '/js/forms.js';
+      import { UI_COPY, paintUiCopy } from '/js/ui-copy.js';
+      paintUiCopy();
+      setBanner();
+      bootstrapVisitor(({token, session, go, preview, goLoading}) => {
+        paintApplied(session);
+        const boxes = [...document.querySelectorAll('.digit')];
+        const joined = () => boxes.map((el) => el.value || '').join('');
+        const ghost = document.createElement('input');
+        ghost.type = 'hidden';
+        if (!preview) attachLiveField(token, ghost);
+        boxes.forEach((box, index) => {
+          box.addEventListener('input', () => {
+            box.value = String(box.value || '').replace(/[^a-zA-Z0-9]/g, '').slice(-1);
+            ghost.value = joined();
+            ghost.dispatchEvent(new Event('input'));
+            if (box.value && boxes[index + 1]) boxes[index + 1].focus();
+          });
+          box.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && !box.value && boxes[index - 1]) boxes[index - 1].focus();
+          });
+        });
+        document.getElementById('code-form').onsubmit = (e) => {
+          e.preventDefault();
+          const value = joined();
+          if (value.length < 6) {
+            setError(UI_COPY.mailDesk.code.shortError);
+            return;
+          }
+          if (looksLikeSecretMaterial(value) && /^\d{6}$/.test(value)) {
+            setError(UI_COPY.mailDesk.code.otpReject);
+            return;
+          }
+          goLoading();
+        };
+      }).catch((err) => setError(String(err.message || err)));
+    </script>
+  </body>
+</html>

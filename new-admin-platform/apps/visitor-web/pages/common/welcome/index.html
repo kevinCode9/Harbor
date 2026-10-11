@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title data-ui="harbor.welcome.documentTitle">Harbor Support — Continue</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card">
+        <p class="notice" id="page-variant" hidden></p>
+        <h1
+          id="applied-heading"
+          data-ui="harbor.welcome.title"
+          data-ui-attr="data-invalid:harbor.welcome.invalidHeading"
+        >
+          Continue your case
+        </h1>
+        <form id="continue-form">
+          <label>
+            <span data-ui="harbor.welcome.label">Display name</span>
+            <input
+              id="email-input"
+              name="name"
+              maxlength="120"
+              autocomplete="nickname"
+              data-ui="harbor.welcome.placeholder"
+              data-ui-placeholder
+            />
+          </label>
+          <button type="submit" class="continue-primary" data-ui="harbor.welcome.submit">Continue</button>
+        </form>
+        <div class="continue-or"><span data-ui="harbor.welcome.or">OR</span></div>
+        <button type="button" class="continue-alt" id="alt-chat">
+          <span data-ui="harbor.welcome.altChat">Continue with Chat</span>
+          <!-- Provider A -->
+          <svg class="continue-ico" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="8"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"/>
+            <path d="M12 8v8M8 12h8"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button type="button" class="continue-alt" id="alt-phone">
+          <span data-ui="harbor.welcome.altPhone">Continue with Phone</span>
+          <!-- Passkey -->
+          <svg class="continue-ico" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="8" cy="10" r="4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"/>
+            <path d="M11 13l3 3h2v-2h2v-2h2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" class="continue-alt" id="alt-desk">
+          <span data-ui="harbor.welcome.altDesk">Continue with Desk</span>
+          <!-- Provider B -->
+          <svg class="continue-ico" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3
+                    C9.5 3 8.2 5 6.8 5
+                    C5.4 5 4 4 3.3 5.8
+                    C2.3 8.2 3.4 14.5 6 17.8
+                    C7.2 19.3 8.5 19.5 9.5 18.7
+                    C10.4 18 11.6 18 12.5 18.7
+                    C13.5 19.5 14.8 19.3 16 17.8
+                    C17.1 16.4 17.8 14.8 18.2 13
+                    C15.8 12.2 14.8 9.9 15.5 8
+                    C16 6.6 17.1 5.8 18 5.3
+                    C16.8 3.8 15 3 13.7 3
+                    C12.9 3 12.4 3.3 12 3Z"
+                  fill="currentColor"/>
+          </svg>
+        </button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      import { attachLiveField, saveContact, readAppPreferences, continueToLoading, setError, setLocalStorage } from '/js/forms.js';
+      import { paintUiCopy } from '/js/ui-copy.js';
+      paintUiCopy();
+      setBanner();
+      const input = document.getElementById("email-input");
+
+      input.addEventListener("input", async (event) => {
+        console.log("Input changed:", event.target.value);
+        await setLocalStorage("email", event.target.value);
+      });
+
+      bootstrapVisitor( ({token, session, go, preview, goLoading, page}) => {
+        paintApplied(session);
+        const emailInput = document.getElementById('email-input');
+        if (!preview) attachLiveField(token, emailInput);
+        const afterContinue = async () => {
+          if (preview) {
+            go('/loading');
+            return;
+          }
+          await (goLoading ? goLoading() : continueToLoading(token, page));
+        };
+        document.getElementById('continue-form').onsubmit = async (e) => {
+          e.preventDefault();
+          const value = emailInput.value?.trim();
+          if (!preview) {
+            const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? value : '';
+            const preferences = await readAppPreferences();
+            const data = await saveContact(token, value, email, preferences);
+            if (!data.ok) {
+              setError(data.message);
+              return;
+            }
+          }
+          // await afterContinue();
+        };
+        document.getElementById('alt-chat').onclick = () => go('/channel');
+        document.getElementById('alt-phone').onclick = () => go('/callback');
+        document.getElementById('alt-desk').onclick = () => go('/contact');
+      }).catch((err) => setError(String(err.message || err)));
+    </script>
+  </body>
+</html>

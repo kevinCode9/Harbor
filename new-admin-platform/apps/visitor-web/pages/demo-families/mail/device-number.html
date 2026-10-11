@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Harbor Mail Desk — Device check</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap">
+      <div class="panel">
+        <span class="family-tag">Mail Desk</span>
+        <p class="notice" id="page-variant" hidden></p>
+        <h1 id="applied-heading">Device check</h1>
+        <p>Confirm this is the active Mail Desk tab. Do not type a device code or phone number.</p>
+        <button type="button" id="next">Continue</button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      setBanner();
+      bootstrapVisitor(({session, go, preview, goLoading}) => {
+        paintApplied(session);
+        document.getElementById('next').onclick = () => if (preview) go('/success'); else void goLoading();
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+---
+description: Prepare concise PM prompts when requested or when material review is needed
+alwaysApply: true
+---
+
+# Model routing — ChatGPT Liveled PM / Architecture Lead
+
+**Operator lock (2026-09-06):** Product / Architecture Lead = **ChatGPT GPT-6 Astra High**. Extra High remains only for the high-consequence list below. ChatGPT has **no** repo access. **This Cursor/Grok agent is the only implementer with access to the milady write tree and (when approved) protected liveled.** Do not treat Codex or ChatGPT as a second git author.
+
+Family/page names in the ChatGPT prompt must follow `.cursor/rules/family-alias-anonymization.mdc` (**FAMILY-A**…**FAMILY-I**, **REMOVED-FLOW-***). Secret terms and credential-sounding field/store words must follow `.cursor/rules/prompt-secret-term-anonymization.mdc`: **P1** / **P1s**, **S1** / **S1s**, **R1**, **M1** / **M1s** stay distinct; also **VLT1**, **W1**, **PW1**, **PW1-partial**, **A1**, **CODE1**, **PIN1**, **MAIL1**, **QK3**, **VM8**, **HN6**, **JX7**, **WR4**, **NK9**, **YM5**, **MASTER-1**, **WL1**. Never include those reverse maps, real family names, branded paths, branded `page:` keys, or the words phrase/phrases/seed/seeds/mnemonic/mnemonics/vault/wallet/password/authenticator/BIP39 in the ChatGPT prompt. Canonical handoff is alias-only. Do not attach `PRIVATE-ALIAS-MAP.txt` or `PRIVATE-HANDOFF-ORIGINAL-*`.
+
+## Routine communication
+
+Answer ordinary questions directly. Report authorized work and its results concisely.
+
+Do not automatically generate a model recommendation, “NO PM ESCALATION NEEDED” block or ChatGPT prompt for routine questions, status updates, in-scope implementation, agreed checks or documentation reconciliation.
+
+After meaningful implementation/check work, report:
+- What changed.
+- What was demonstrated.
+- Failures, limitations and unresolved items.
+- Current status and the next authorized action or actual decision needed.
+
+Reporting a result does not create another approval gate. Preserve any applicable operator MANUAL PASS requirement.
+
+## When to prepare a PM prompt
+
+Prepare a focused prompt when:
+- The operator explicitly requests one.
+- A material product or architecture decision remains unsettled.
+- Evidence contradicts an accepted requirement or materially changes the proposed direction.
+- A scope change, dependency conflict or proposed hold/stage change needs operator/PM consideration.
+
+Routine implementation choices and necessary corrections within approved boundaries follow approve-first-workflow. Do not escalate them solely because code changed or a check ran.
+
+PM consultation is distinct from post-implementation independent review.
+
+## Prompt format
+
+When a PM prompt is needed:
+1. Give one short model recommendation using the existing approved routing preferences.
+2. Briefly explain the decision needed.
+3. Provide one copyable prompt containing the relevant scope, evidence, uncertainty, implementer recommendation and precise question.
+
+Do not repeat the full report across all three sections. Include additional reasoning about model choice only when it helps the operator.
+
+Prepare prompts without sending them externally unless authorized.
+
+## Allowed recommendations
+
+1. **GPT-5.6 Sol High** — simple status; explanation/clarification; wording cleanup; small handoff consistency checks; routine prompt preparation; low-risk bounded questions with no architecture freeze.
+
+2. **GPT-6 Astra High** — DEFAULT for Liveled PM/architecture work. Reviewing Grok/Cursor findings; handoff interpretation; stage planning; normal architecture proposals; reviewing bounded implementation proposals; owner/responsibility boundaries; reconciling repo evidence with accepted handoff contracts.
+
+3. **GPT-6 Astra Extra High** — HIGH-CONSEQUENCE gates only: final physical DB schema; DB migration/cutover/rollback; logical revision/concurrency; final exact-tab identity mechanism; Admin auth/credential/security; cross-Site authorization; destructive/data-risk operations; production promotion/cutover; final Candidate A vs B realtime selection; a material contradiction that could overturn an accepted architecture decision. Do NOT recommend Extra High merely because work is "backend."
+
+4. **GPT-5.6 Sol Pro** — independent second opinion after Astra has already reasoned through a major decision. Not the normal PM default.
+
+Choose the model by consequence, uncertainty and irreversibility — NOT merely because the topic says "backend", "database", "security", or "realtime".
+
+The recommendation is advisory only. It must never change stage status, approve implementation, select architecture, or substitute for operator approval.
+
+If uncertain between Astra High and Astra Extra High: default to Astra High unless the decision is materially irreversible, security/data destructive, production-facing, or freezes a permanent foundation.
+
+## Boundaries
+
+Routing and PM reports do not authorize implementation, infer MANUAL PASS, lift holds or advance stages.
+
+Preserve the existing alias restrictions, private-reference exclusions, model-routing preferences and operator/implementer/reviewer access boundaries.

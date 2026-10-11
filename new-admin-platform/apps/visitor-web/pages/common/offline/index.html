@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — Offline</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap">
+      <div class="panel">
+        <h1>Support is offline</h1>
+        <p>The panel is disabled or this tab has no live session. Return to welcome to start again.</p>
+        <button type="button" id="home">Welcome</button>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { setBanner } from '/js/bootstrap.js';
+      setBanner();
+      document.getElementById('home').onclick = () => {
+        window.location.href = '/welcome';
+      };
+    </script>
+  </body>
+</html>

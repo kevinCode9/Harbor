@@ -1,0 +1,21 @@
+{
+  "name": "harbor-support",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Legitimate customer-support console. Never collects seeds, keys, OTPs, or passwords from customers.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @harbor/api & npm run dev -w @harbor/web",
+    "dev:api": "npm run dev -w @harbor/api",
+    "dev:web": "npm run dev -w @harbor/web",
+    "build": "npm run build -w @harbor/shared && npm run build -w @harbor/api && npm run build -w @harbor/web",
+    "db:push": "npm run db:push -w @harbor/api",
+    "db:seed": "npm run db:seed -w @harbor/api"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

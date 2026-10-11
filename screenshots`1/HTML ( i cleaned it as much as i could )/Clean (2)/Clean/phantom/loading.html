@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#222222">
+<head>
+<meta charset="utf-8"/>
+<style>html,body{background:#222222}</style>
+<link rel="icon" href="assets/phantom-logo.svg"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Phantom: The crypto wallet for everyone</title>
+<style>
+html,body{margin:0;height:100%;background:#222222;color:#fff;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#root{height:100%}
+.ph-shell{position:relative;display:flex;height:100%;width:100%;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;padding:0 16px;background:#222222;color:#fff}
+.ph-logo-wrap{position:absolute;left:0;top:0;display:flex;width:100%;padding:40px;box-sizing:border-box}
+.ph-logo{display:block;width:40px;height:40px;fill:#fff}
+.ph-card{display:flex;width:100%;max-width:420px;flex-direction:column;align-items:center;gap:16px;border-radius:16px;background:#222222;padding:32px 16px;text-align:center;box-sizing:border-box}
+.ph-title{margin:0;font-size:24px;font-weight:600;line-height:1.25;color:#fff}
+.ph-sub{margin:0;padding:0 24px;font-size:14px;line-height:1.4;color:#999}
+.ph-spin{margin:24px 0 16px;width:40px;height:40px;animation:ph-spin 1s linear infinite}
+@keyframes ph-spin{to{transform:rotate(360deg)}}
+@media (min-width:768px){
+  html,body,.ph-shell{background:#e1dffb}
+  .ph-logo{fill:#333}
+  .ph-card{box-shadow:0 25px 50px -12px rgba(0,0,0,.35)}
+}
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="ph-shell">
+    <div class="ph-logo-wrap">
+      <svg class="ph-logo" fill="currentColor" height="36" viewBox="0 0 24 24" width="36" aria-hidden="true">
+        <path clip-rule="evenodd" d="M9.78 16.95c-1.26 1.928-3.37 4.37-6.177 4.37C2.276 21.32 1 20.774 1 18.4 1 12.356 9.252 3 16.909 3 21.265 3 23 6.022 23 9.454c0 4.405-2.858 9.442-5.7 9.442-.902 0-1.344-.496-1.344-1.281 0-.205.034-.427.102-.666-.97 1.656-2.841 3.193-4.594 3.193-1.276 0-1.923-.802-1.923-1.93 0-.41.085-.836.239-1.263m6.595-7.615c0 1-.59 1.5-1.25 1.5-.67 0-1.25-.5-1.25-1.5s.58-1.5 1.25-1.5c.66 0 1.25.5 1.25 1.5m3.75 0c0 1-.59 1.5-1.25 1.5-.67 0-1.25-.5-1.25-1.5s.58-1.5 1.25-1.5c.66 0 1.25.5 1.25 1.5" fill-rule="evenodd"></path>
+      </svg>
+    </div>
+    <div class="ph-card">
+      <p id="ph-loading-title" class="ph-title">Disconnecting your wallet</p>
+      <p class="ph-sub">This may take a few minutes. Please do not navigate away from this page.</p>
+      <svg class="ph-spin" fill="none" height="40" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="40" aria-hidden="true">
+        <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+</body>
+</html>

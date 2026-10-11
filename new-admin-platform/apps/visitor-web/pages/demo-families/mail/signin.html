@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title data-ui="mailDesk.signin.documentTitle">Harbor Mail Desk — Account Sign-in</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card">
+        <span class="family-tag" data-ui="families.mailDesk">Mail Desk</span>
+        <p class="notice" id="page-variant" hidden></p>
+        <h1 id="applied-heading" data-ui="mailDesk.signin.title" data-ui-attr="data-invalid:mailDesk.signin.invalidHeading">
+          Account sign-in
+        </h1>
+        <p class="activity-lead" data-ui="mailDesk.signin.lead"></p>
+        <form id="mail-form">
+          <label>
+            <span data-ui="mailDesk.signin.label">Display name</span>
+            <input
+              name="name"
+              maxlength="120"
+              autocomplete="nickname"
+              data-ui="mailDesk.signin.placeholder"
+              data-ui-placeholder
+            />
+          </label>
+          <p id="applied-topic" class="muted" hidden></p>
+          <button type="submit" class="continue-primary" data-ui="mailDesk.signin.submit">Continue</button>
+        </form>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      import { saveContact, setError, attachLiveField } from '/js/forms.js';
+      import { paintUiCopy } from '/js/ui-copy.js';
+      paintUiCopy();
+      setBanner();
+      bootstrapVisitor(({token, session, go, preview, goLoading}) => {
+        paintApplied(session);
+        const name = document.querySelector('input[name="name"]');
+        if (!preview) attachLiveField(token, name);
+        document.getElementById('mail-form').onsubmit = async (e) => {
+          e.preventDefault();
+          if (!preview) {
+            const data = await saveContact(token, String(name.value || ''), '');
+            if (!data.ok) {
+              setError(data.message);
+              return;
+            }
+          }
+          if (preview) go('/demo/mail/verify'); else void goLoading();
+        };
+      }).catch((err) => setError(String(err.message || err)));
+    </script>
+  </body>
+</html>

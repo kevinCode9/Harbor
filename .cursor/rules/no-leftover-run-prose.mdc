@@ -1,0 +1,39 @@
+---
+description: leftover is a product qualifier, not a prefix for every noun
+alwaysApply: true
+---
+
+# leftover is a qualifier, not filler
+
+`leftover` names the old dump / compose implementation. It is **not** a prefix for every noun or action.
+
+## Future wording (operator 2026-09-29)
+
+Use these names in new messages and new documentation. Do not rewrite historical evidence. Do not rename code, routes, files, database values, or aliases.
+
+| Say | Meaning |
+|---|---|
+| FAMILY-C NK9 | the page |
+| original saved-page dump | the captured original HTML |
+| cleaned HTML | the replacement, where implemented |
+| legacy HTTP path | the older HTTP delivery / injection path |
+| grant-mount path | admission / document delivery |
+| unused artifact | only where lack of consumers is established |
+| retired page | only where retirement is applied; record PASS separately |
+
+Programme name: **saved-page cleanup**. Active work and status come from maintained Current / Next and latest explicit operator decisions. This wording rule does not select a checkpoint.
+
+Use KEY, CSS, dest-bootstrap, command bridge, Admin, database, and polling as those names. Keep sentences short. Do not replace every leftover with legacy.
+
+## Must
+
+- Write normal sentences in operator chat.
+- Use leftover only when it distinguishes dump / compose work from the surviving product (example: leftover FAMILY-A **QK3** compose).
+- Apply the relevant alias and access rules to each output. ChatGPT-visible documentation and prompts must remain alias-only. This rule grants no access to source, private alias maps or excluded audit material. leftover is a qualifier, not filler. Do not add leftover in front of window, file, check, glyph, or other ordinary words.
+- When dump inspection is authorized and necessary, read targeted relevant portions rather than repeatedly loading the entire dump. Do not paste large dumps into replies. A small excerpt alone is not proof that all relevant behavior has been inspected.
+
+## Must not
+
+- Do not repeat leftover as filler in front of every noun.
+- Do not say leftover window, leftover file, leftover check, leftover glyph when window, file, check, glyph is enough.
+- Do not let leftover-filler blow the reply limit or stall the approved task.

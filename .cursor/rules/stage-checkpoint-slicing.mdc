@@ -1,0 +1,35 @@
+---
+description: Plan dependencies, then implement coherent, explicitly authorized checkpoints
+alwaysApply: true
+---
+
+# Plan dependencies, then implement coherent checkpoints
+
+The maintained Current / Next and latest operator decisions determine the active work. This rule does not select a stage or authorize implementation.
+
+## Before implementation
+
+1. Establish the intended outcome, target responsibilities, critical dependencies and relevant preservation requirements.
+2. Identify whether the proposed work survives later stages, depends on something scheduled for replacement, or is a necessary temporary correction.
+3. Explain any necessary temporary correction: the concrete blocker, minimum scope, cost and replacement trigger.
+4. Resolve decisions that could materially invalidate the proposed implementation before APPLY. Detailed design of unrelated future work is not required.
+5. Review the relevant callers, writers and transition paths sufficiently to establish correctness. Do not assume an existing path can safely be ignored merely because replacement is planned.
+
+## Choose checkpoint boundaries
+
+- A checkpoint delivers one coherent, testable outcome. It may include related files, components, integration work and agreed verification.
+- Split when a concrete dependency, risk, independently useful outcome or authorization boundary justifies it. Explain that reason.
+- Do not split merely by file count, technical layer or an example stage list.
+- A stage label alone neither authorizes a whole-stage APPLY nor requires a fixed number of checkpoints.
+- Do not fragment changes that must work together to preserve the approved behavior.
+- Unrelated work stays outside scope. Record dependencies without silently starting them.
+
+## Authorization and completion
+
+Follow approve-first-workflow’s bounded-authorization policy. One approval covers implementation, necessary in-bound adjustments and agreed focused checks.
+
+Do not add ACCEPT, unchanged-card confirmation or another approval solely for those checks.
+
+The operator names or selects the next checkpoint. Naming it does not itself authorize product APPLY.
+
+APPLY is not MANUAL PASS. Preserve closed scopes and their evidence; do not reopen them merely to complete unrelated work.

@@ -1,0 +1,33 @@
+---
+description: Production-first; classify env/performance issues before proposing code; do not widen product architecture for local quirks
+alwaysApply: true
+---
+
+# Deployment-optimality gate
+
+This project is built for final production deployment. Do not optimize around temporary local/sandbox quirks merely because they exist.
+
+Current work follows the maintained Current / Next and latest explicit operator decisions. Historical stage labels do not select current work.
+
+Priority order:
+
+1. Final production correctness
+2. Final production architecture / maintainability
+3. Reliable enough local testing to validate production behavior
+4. Local-only polish last
+
+For environment-specific issues: determine whether the problem can occur on the intended production stack. If production is unaffected, classify LOCAL/DEV ONLY. Do not widen product architecture to accommodate it. Do not promote a sandbox-only workaround unless it is genuinely useful for maintaining a reliable development environment.
+
+Performance proposal gate: classify every observed performance issue as A local/dev-only, B temporary architecture, or C surviving deployed architecture before proposing code. Normally only C may be changed.
+
+A local/dev-only or temporary correction may be proposed only when it directly blocks development, testing or safe progression. Apply stage-checkpoint-slicing’s temporary-work test: concrete blocker, minimum scope, cost and replacement trigger. Follow approve-first-workflow’s bounded authorization. Classification does not authorize implementation.
+
+Ground production (class C) recommendations in the agreed workload: 3–5 Sites and approximately 10–30 actively typing visitors across the application, usually fewer. Admin connections are additional. Total concurrent connections and deployment sizing remain unmeasured. Do not invent capacity limits or add infrastructure for hypothetical scale.
+
+Intended production DB is MySQL/InnoDB. That does not prove concurrency concerns disappear. Production relevance of a locally observed failure depends on the cause and affected behavior.
+
+If classification is uncertain: identify the uncertainty, the smallest decisive evidence needed, and its decision criterion. Use authorized inspection and checks only. If evidence remains insufficient, report unresolved classification and its impact. Do not repeat unchanged experiments without a concrete reason and a defined evidence goal. Targeted reproduction or verification after a relevant change remains permitted within the approved scope. Do not invent certainty.
+
+Historical classification (do not reopen): `/api/log` 503 from local SQLite writer collision was LOCAL/DEV ONLY for that specifically diagnosed incident. Do not treat every `/api/log` 503 or every locally observed correctness failure as the same class. If `transaction_mode=IMMEDIATE` is retained, it is a dormant sqlite-connection development reliability setting only.
+
+Full lock text: canonical handoff `C:\laragon\www\project handoff.txt` — AUTHORITATIVE NOW / PRODUCTION-FIRST PRIORITY / DEPLOYMENT-OPTIMALITY GATE.

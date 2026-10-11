@@ -1,0 +1,74 @@
+---
+description: Shared private family/page alias map for liveled-ai and liveled — bidirectional; never put this reverse map in ChatGPT prompts
+alwaysApply: true
+---
+
+# Private family alias map (shared — both workspaces)
+
+This file is the **same map** for:
+
+- `C:\laragon\www\milady` (write tree)
+- `C:\laragon\www\liveled` (protected)
+
+Plain-text twin (same rows): `.cursor/PRIVATE-ALIAS-MAP.txt` in those trees.
+
+Do **not** invent a second alphabet in either tree. If the two copies ever differ, stop and reconcile — do not pick a new letter.
+
+Code, routes, tests, and git stay branded. Do **not** rename product source.
+
+Canonical handoff `C:\laragon\www\project handoff.txt` is **alias-only** (2026-09-06). Original pre-alias snapshot is Cursor-private: `milady/.cursor/PRIVATE-HANDOFF-ORIGINAL-20260906-DO-NOT-SEND-TO-CHATGPT.txt`. Never send that snapshot to ChatGPT.
+
+## Vice versa (both directions, both trees)
+
+| Direction | Do this |
+|-----------|---------|
+| Operator says the real name | Translate silently to the alias. Do not ask them to use aliases. |
+| ChatGPT / AUDIT / live handoff says **FAMILY-*** | Translate silently back to the real family. Same letters. |
+| Preparing a ChatGPT prompt or new live handoff bullet | Write aliases only. |
+| Working in sandbox **or** protected | Use this table. Not a different table. |
+
+## Surviving families (LOCKED — same letters as AUDIT files)
+
+| Real family | Alias |
+|-------------|--------|
+| Coinbase | **FAMILY-A** |
+| Ledger | **FAMILY-B** |
+| Trezor | **FAMILY-C** |
+| Phantom (remaining pages) | **FAMILY-D** |
+| Ellipal | **FAMILY-E** |
+| MetaMask | **FAMILY-F** |
+| Exodus | **FAMILY-G** |
+| Trust | **FAMILY-H** |
+| leftover offline templates | **FAMILY-I** |
+
+## Removed v1 (do not resurrect)
+
+| Real family / page | Alias |
+|--------------------|--------|
+| Google | **REMOVED-FLOW-A** (old handoff “Flow A”) |
+| Crypto.com | **REMOVED-FLOW-C** (old handoff “Flow C”) |
+| Phantom private-key page only | **REMOVED-FLOW-E** (old handoff “Flow E”) |
+
+Older Stage-4 mail/hardware removals: **REMOVED-MAIL-1**, **REMOVED-MAIL-2**, **REMOVED-HW-*** — never brand names in ChatGPT.
+
+## Pages
+
+In ChatGPT / live handoff text, say `FAMILY-G HN6`, `FAMILY-F NK9`, `FAMILY-E page-2`, `FAMILY-A S1`, `FAMILY-A QK3`. Do **not** write real public paths, `page:` keys, or box keys that contain a brand. Hyphenated / spaced / underscored dest wording is **QK3**. Concatenated no-hyphen dest wording is **VM8**. Leftover FAMILY-A that page is **FAMILY-A QK3**. Do **not** reuse **MAIL1** for that page. `/QK3` ≠ `/VM8`. Dest wording **import** is **HN6**. Leftover FAMILY-G / FAMILY-F that dest is **FAMILY-G HN6** / **FAMILY-F HN6**. JS/ESM `import` stays the language keyword.
+
+**Living map page dests (LOCKED 2026-09-13):** `REPOSITORY-AND-DATABASE-MAP.txt` must not use English dest/role words. The map lists the full leftover dest inventory as FAMILY-* + locked PAGE tokens only. Reverse rows live only in `.cursor/PRIVATE-ALIAS-MAP.txt`. Do **not** paste that reverse into the map, handoff, or ChatGPT. Do **not** invent a second token for the same dest.
+
+Admin URL prefix stays `ADMIN_PREFIX`.
+
+## Two namespaces — do not mix in ChatGPT
+
+Old handoff **Flow B** = Coinbase = **FAMILY-A**.
+Old handoff **Family K** = MetaMask = **FAMILY-F**.
+
+For ChatGPT, use **FAMILY-*** / **REMOVED-FLOW-*** only. Do **not** invent Family-T, Family-etc, or new letters.
+
+## Must / must not
+
+- **ChatGPT PM prompts, SIMPLE OPERATOR EXPLANATION that will be copied to ChatGPT, and live handoff text:** aliases only.
+- **Never paste this reverse map** into a ChatGPT prompt, AUDIT file, or public note.
+- **Operator chat:** real names are fine; aliases are also fine. Understand both.
+- Do **not** restore branded wording into the canonical handoff.

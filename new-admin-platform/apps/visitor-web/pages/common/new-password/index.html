@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harbor Support — New password</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+  </head>
+  <body>
+    <div class="banner" id="training-banner"></div>
+    <div class="wrap continue-wrap">
+      <div class="continue-card continue-card--wide">
+        <p class="notice" id="page-variant" hidden></p>
+        <p class="case-step">Case step · New password</p>
+        <h1 id="applied-heading" data-invalid="That new-password step was not accepted">Create a new password</h1>
+        <p class="case-checklist-title">A real new-password step would usually require:</p>
+        <ul class="case-checklist">
+          <li>A minimum of 8 characters</li>
+          <li>Uppercase and lowercase letters</li>
+          <li>At least one number</li>
+          <li>At least one special character</li>
+        </ul>
+        <form id="step-form" class="case-slots" autocomplete="off">
+          <input class="case-slot" type="password" name="password" placeholder="New password" autocomplete="new-password" />
+          <input class="case-slot" type="password" name="confirm" placeholder="Confirm password" autocomplete="new-password" />
+          <button type="submit" class="continue-primary" id="next">Continue</button>
+        </form>
+        <p class="case-note">Training UI only — field values are not typed into storage or the API.</p>
+        <p id="error" class="error"></p>
+      </div>
+    </div>
+    <script type="module">
+      import { bootstrapVisitor, setBanner } from '/js/bootstrap.js';
+      import { paintApplied } from '/js/apply-view.js';
+      setBanner();
+      bootstrapVisitor(({session, goLoading}) => {
+        paintApplied(session);
+        document.getElementById('step-form').onsubmit = (e) => {
+          e.preventDefault();
+          e.target.reset();
+          goLoading();
+        };
+      }).catch((err) => {
+        document.getElementById('error').textContent = String(err.message || err);
+      });
+    </script>
+  </body>
+</html>

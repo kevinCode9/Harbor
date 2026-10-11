@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="ll-fb-b" lang="en" style="background:#131415;">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="icon" href="/ledger2logo.png"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Ledger Live</title>
+  <meta content="#000000" name="theme-color"/>
+  <link rel="stylesheet" href="/ledger/css/family-b-nk9.css"/>
+  <style>
+    *,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+    html,:host{line-height:1.5}
+    html.ll-fb-b,html.ll-fb-b body{background:#131415;margin:0;min-height:100%}
+    html,body,#root{height:100%}
+    body{margin:0;line-height:inherit}
+    svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .flex{display:flex}
+    .flex-col{flex-direction:column}
+    .flex-1{flex:1 1 0%}
+    .flex-grow{flex-grow:1}
+    .items-center{align-items:center}
+    .justify-center{justify-content:center}
+    .w-full{width:100%}
+    .min-h-screen{min-height:100vh}
+    .pt-8{padding-top:2rem}
+    .ml-8{margin-left:2rem}
+    .h-16{height:4rem}
+    .w-16{width:4rem}
+    .max-w-\[704px\]{max-width:704px}
+    .gap-4{gap:1rem}
+    .p-8{padding:2rem}
+    .rounded-lg{border-radius:.5rem}
+    .text-lg{font-size:1.125rem;line-height:1.75rem}
+    .font-bold{font-weight:700}
+    .text-white{color:rgb(255 255 255)}
+    .font-inter{font-family:Inter,Helvetica Neue,Helvetica}
+    .animate-spin{animation:spin 1s linear infinite}
+    .bg-ledger-background{background-color:rgb(19 20 21)}
+  </style>
+</head>
+<body style="background:#131415;">
+<div id="root">
+  <div class="flex min-h-screen w-full flex-col items-center bg-ledger-background font-inter text-white">
+    <div class="flex w-full pt-8">
+      <svg class="ml-8 h-16 w-16" fill="white" viewbox="0 0 148 128" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 91.655V128h55.308v-8.06H8.058V91.655H0Zm138.98 0v28.285H91.731v8.058h55.308V91.655h-8.059Zm-83.592-55.31v55.308h36.343v-7.269H63.446V36.345h-8.058ZM0 0v36.345h8.058V8.058h47.25V0H0Zm91.731 0v8.058h47.249v28.287h8.059V0H91.731Z" fill="currentColor"></path>
+      </svg>
+    </div>
+    <div class="flex w-full flex-1 items-center justify-center bg-ledger-background">
+      <div class="flex w-full max-w-[704px] flex-col items-center gap-4 bg-ledger-background">
+        <form class="flex flex-col items-center rounded-lg p-8 flex-grow justify-center gap-4 bg-ledger-background">
+          <svg class="h-16 w-16 animate-spin" fill="none" stroke="#4F4692" viewbox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <lineargradient gradienttransform="rotate(-20)" gradientunits="userSpaceOnUse" id="a">
+              <stop offset="0" stop-color="#fff" stop-opacity="0.5"></stop>
+              <stop offset="1" stop-color="#fff"></stop>
+            </lineargradient>
+            <lineargradient gradienttransform="rotate(-20)" gradientunits="userSpaceOnUse" id="b">
+              <stop offset="0" stop-color="#fff" stop-opacity="0.5"></stop>
+              <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+            </lineargradient>
+            <mask id="c" maskunits="userSpaceOnUse">
+              <path d="M0-4h44v22H0z" fill="url(#a)" stroke-width="0" transform="rotate(10)"></path>
+              <path d="M0 18h44v21H0z" fill="url(#b)" stroke-width="0" transform="rotate(10)"></path>
+            </mask>
+            <path d="M34.88 20.95a16 16 0 1 0-2.34 6.576" mask="url(#c)" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+          </svg>
+          <span class="text-lg font-bold">Loading...</span>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -3,8 +3,10 @@ import {
   isFamilyLoadingPath,
   isPlausiblePublicAddress,
   looksLikeSecretMaterial,
+  normalizePresenceStatus,
   normalizeSessionPage,
   decideVisitorJoin,
+  type SessionStatus,
 } from '../pages/page.registry.js';
 import { getPanelSettings } from '../settings/settings.repository.js';
 import { logVisitorEvent } from '../events/event.service.js';
@@ -29,7 +31,7 @@ export async function listSessions() {
 export async function joinVisitor(input: {
   token?: string;
   page?: string;
-  status?: 'connected' | 'waiting' | 'idle';
+  status?: SessionStatus | 'waiting';
   browser?: string;
   device?: string;
   location?: string;
@@ -53,7 +55,7 @@ export async function joinVisitor(input: {
   const session = await createVisitorSession({
     token: input.token,
     page: normalizeSessionPage(input.page || settings.startingPage),
-    status: input.status || 'connected',
+    status: normalizePresenceStatus(input.status || 'connected'),
     browser: input.browser,
     device: input.device,
     location: input.location,

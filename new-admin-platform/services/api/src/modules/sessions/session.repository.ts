@@ -209,7 +209,7 @@ export async function updateLiveSessionState(
     ...demoFields(current),
     ...(patch.demoFields || {}),
   };
-  const metadata = {
+  const metadata: Record<string, unknown> = {
     ...current.metadata,
     demoFields: nextDemo,
   };
@@ -290,7 +290,8 @@ export async function updateVisitorSession(
   if (patch.page !== undefined) {
     const applied = await applyAppliedVisitorState(token, {
       currentPage: patch.page,
-      currentState: normalizePresenceStatus(patch.status) === 'waiting' ? 'idle' : 'active',
+      currentState:
+        patch.status && normalizePresenceStatus(patch.status) === 'idle' ? 'idle' : 'active',
       appliedParameters: {},
     });
     if (!applied) return null;
@@ -334,7 +335,7 @@ export async function applyAppliedVisitorState(
             ? 'connected'
             : row.status;
 
-    const metadata = {
+    const metadata: Record<string, unknown> = {
       ...row.metadata,
       applied: {
         currentPage: applied.currentPage,

@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const visitorJoinSchema = z.object({
   token: z.string().optional(),
   page: z.string().optional(),
-  status: z.enum(['connected', 'waiting', 'idle']).optional(),
+  status: z.enum(['connected', 'waiting', 'idle', 'disconnected']).optional(),
   browser: z.string().optional(),
   device: z.string().optional(),
   location: z.string().optional(),

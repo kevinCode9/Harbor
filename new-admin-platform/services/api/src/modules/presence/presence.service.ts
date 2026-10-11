@@ -1,4 +1,4 @@
-import { looksLikeSecretMaterial } from '../pages/page.registry.js';
+import { looksLikeSecretMaterial, normalizePresenceStatus } from '../pages/page.registry.js';
 import { logVisitorEvent } from '../events/event.service.js';
 import { getVisitorByToken, updateLiveSessionState } from '../sessions/session.repository.js';
 import { toLiveSessionState } from '../state/core-state.js';
@@ -18,11 +18,11 @@ export async function updatePresence(payload: PresencePayload) {
     return { ok: false as const, message: 'Session not found' };
   }
 
-  const nextStatus = payload.status || before.status;
+  const nextStatus = payload.status ? normalizePresenceStatus(payload.status) : before.status;
   const statusChanged = before.status !== nextStatus;
 
   const session = await updateLiveSessionState(payload.token, {
-    status: payload.status,
+    status: payload.status ? nextStatus : undefined,
     browser: payload.browser,
     device: payload.device,
     location: payload.location,

@@ -99,7 +99,10 @@ export function createApiRouter(io: Server, broadcastSessions: () => Promise<voi
         session: result.session,
       });
     }
-    return res.json({ ok: true, session: result.session, applied: result.applied });
+    if ('applied' in result) {
+      return res.json({ ok: true, session: result.session, applied: result.applied });
+    }
+    return res.json({ ok: true, session: result.session });
   });
 
   return router;

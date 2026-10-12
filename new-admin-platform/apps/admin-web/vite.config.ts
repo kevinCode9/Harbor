@@ -5,9 +5,11 @@ import { fileURLToPath } from 'url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
   root: here,
+  // Production is served under Express `/admin` (see services/api/src/app.ts).
+  base: command === 'build' ? '/admin/' : '/',
   resolve: {
     alias: {
       '@shared': path.resolve(here, '../../packages/session-rules/src/index.ts'),
@@ -29,4 +31,4 @@ export default defineConfig({
     outDir: path.resolve(here, '../../dist-admin'),
     emptyOutDir: true,
   },
-});
+}));

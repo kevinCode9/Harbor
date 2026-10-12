@@ -14,11 +14,26 @@ export function previewHref(path) {
   return hash ? `${next}#${hash}` : next;
 }
 
+/** Fallback when crypto.randomUUID is unavailable (non-HTTPS origins are not secure contexts). */
+function createVisitorToken() {
+  if (globalThis.crypto && typeof globalThis.crypto.randomUUID === 'function') {
+    return `visitor-${globalThis.crypto.randomUUID()}`;
+  }
+  const bytes = new Uint8Array(16);
+  if (globalThis.crypto && typeof globalThis.crypto.getRandomValues === 'function') {
+    globalThis.crypto.getRandomValues(bytes);
+  } else {
+    for (let i = 0; i < bytes.length; i += 1) bytes[i] = Math.floor(Math.random() * 256);
+  }
+  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+  return `visitor-${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
 /** Per-tab isolation: sessionStorage so two tabs create two independent sessions. */
 export function getOrCreateToken() {
   let token = sessionStorage.getItem(TOKEN_KEY);
   if (!token) {
-    token = `visitor-${crypto.randomUUID()}`;
+    token = createVisitorToken();
     sessionStorage.setItem(TOKEN_KEY, token);
   }
   // Migrate away from shared localStorage if present.

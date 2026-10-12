@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { sanitizeAdminKeyInput } from '@shared';
 import { adminApi } from '../lib/adminApi';
 
-const ADMIN_KEY_STORAGE = 'harbor.adminUnlockKey';
+const ADMIN_KEY_STORAGE = 'harbor.adminKey';
 
 function stripKeyFromUrl() {
   const url = new URL(window.location.href);
@@ -23,7 +24,7 @@ function writeStoredKey(key: string) {
   try {
     sessionStorage.setItem(ADMIN_KEY_STORAGE, key);
   } catch {
-    // ignore quota / private-mode failures
+    // ignore quota / private mode
   }
 }
 
@@ -37,8 +38,9 @@ function clearStoredKey() {
 
 export function useAdminAuth() {
   const [authenticated, setAuthenticated] = useState(false);
-  const [authReady, setAuthReady] = useState(() => !readStoredKey());
   const [adminKey, setAdminKey] = useState('');
+  const [authReady, setAuthReady] = useState(false);
+  const loginGeneration = useRef(0);
 
   const login = useCallback(async (key?: string) => {
     const value = (key ?? adminKey).trim();
@@ -46,44 +48,59 @@ export function useAdminAuth() {
       setAuthenticated(false);
       return false;
     }
-    stripKeyFromUrl();
+    const generation = ++loginGeneration.current;
     try {
       const data = await adminApi.login(value);
+      if (generation !== loginGeneration.current) return false;
       const ok = Boolean(data.ok);
-      setAuthenticated(ok);
       if (ok) {
+        setAuthenticated(true);
         writeStoredKey(value);
         setAdminKey('');
+        stripKeyFromUrl();
       } else {
-        clearStoredKey();
+        setAuthenticated(false);
+        if (readStoredKey() === value) clearStoredKey();
       }
       return ok;
     } catch {
+      if (generation !== loginGeneration.current) return false;
       setAuthenticated(false);
-      clearStoredKey();
+      // Keep stored key on transport errors so refresh can retry.
       return false;
     }
   }, [adminKey]);
 
   useEffect(() => {
-    const stored = readStoredKey();
-    if (!stored) {
-      setAuthReady(true);
-      return;
-    }
     let cancelled = false;
     (async () => {
-      const ok = await login(stored);
-      if (!cancelled) {
-        if (!ok) clearStoredKey();
-        setAuthReady(true);
+      const urlKey = sanitizeAdminKeyInput(new URLSearchParams(window.location.search).get('key'));
+      const stored = readStoredKey();
+      const candidates = urlKey ? (stored && stored !== urlKey ? [urlKey, stored] : [urlKey]) : stored ? [stored] : [];
+
+      for (const candidate of candidates) {
+        if (cancelled) return;
+        try {
+          const data = await adminApi.login(candidate);
+          if (cancelled) return;
+          if (data.ok) {
+            setAuthenticated(true);
+            writeStoredKey(candidate);
+            if (urlKey) stripKeyFromUrl();
+            break;
+          }
+          if (readStoredKey() === candidate) clearStoredKey();
+        } catch {
+          // Leave storage intact; operator can retry after the API is back.
+          break;
+        }
       }
+
+      if (!cancelled) setAuthReady(true);
     })();
     return () => {
       cancelled = true;
     };
-    // Restore once on mount from sessionStorage.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

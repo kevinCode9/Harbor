@@ -3,7 +3,6 @@ import {
   canSendSessionAction,
   createEmptyAdminDraft,
   normalizeSessionPage,
-  sanitizeAdminKeyInput,
   sanitizeAppliedParameters,
   selectDraftAction,
   selectDraftPage,
@@ -30,13 +29,13 @@ function initialPreview() {
 }
 
 export default function App() {
-  const [view, setView] = useState<'panel' | 'settings'>('settings');
+  const [view, setView] = useState<'panel' | 'settings'>('panel');
   const [focusedToken, setFocusedToken] = useState<string | null>(null);
   const [adminDraft, setAdminDraft] = useState<AdminDraft>(() => createEmptyAdminDraft('/welcome'));
   const [settings, setSettings] = useState<PanelSettings>(defaultSettings);
   const [previewUrl, setPreviewUrl] = useState<string | null>(() => initialPreview().page);
   const [previewParams, setPreviewParams] = useState<Record<string, unknown>>(() => initialPreview().params);
-  const { authenticated, adminKey, setAdminKey, login, logout } = useAdminAuth();
+  const { authenticated, authReady, adminKey, setAdminKey, login, logout } = useAdminAuth();
   const { sessions } = useAdminSessions(focusedToken);
   const seenSessionTokens = useRef<Set<string> | null>(null);
 
@@ -64,28 +63,6 @@ export default function App() {
       // The browser can block audio until the admin has interacted with the page.
     }
   }, [sessions, settings.sound]);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlKey = sanitizeAdminKeyInput(params.get('key'));
-    if (!urlKey) return;
-    setAdminKey(urlKey);
-    let cancelled = false;
-    const delays = [0, 400, 800, 1600, 2500, 4000];
-    (async () => {
-      for (const delay of delays) {
-        if (cancelled) return;
-        if (delay) await new Promise((resolve) => setTimeout(resolve, delay));
-        const ok = await login(urlKey);
-        if (ok || cancelled) return;
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-    // Initial sign-in only.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     void adminApi.getSettings().then((data) => {
@@ -210,6 +187,10 @@ export default function App() {
     await adminApi.endSession(token);
     if (focusedToken === token) setFocusedToken(null);
   };
+
+  if (!authReady) {
+    return <div className="login login-sign-in" aria-busy="true" />;
+  }
 
   if (!authenticated) {
     return <LoginPanel adminKey={adminKey} onKeyChange={setAdminKey} onLogin={() => login()} />;

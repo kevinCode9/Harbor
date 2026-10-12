@@ -103,7 +103,7 @@ export function SessionOps({ session }: { session: Session }) {
         </label>
       ) : null}
 
-      <div className="session-ops-block">
+      {/* <div className="session-ops-block">
         <span>Messages</span>
         <ul>
           {messages.map((item) => (
@@ -138,7 +138,7 @@ export function SessionOps({ session }: { session: Session }) {
             <li key={item.id}>{item.event_type || item.eventType}</li>
           ))}
         </ul>
-      </div>
+      </div> */}
       {error ? <p className="accordion-hint">{error}</p> : null}
     </div>
   );

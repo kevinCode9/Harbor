@@ -139,6 +139,7 @@ export function SessionOps({ session }: { session: Session }) {
           ))}
         </ul>
       </div> */}
+      
       {error ? <p className="accordion-hint">{error}</p> : null}
     </div>
   );

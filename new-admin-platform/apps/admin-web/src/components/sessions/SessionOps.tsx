@@ -103,43 +103,6 @@ export function SessionOps({ session }: { session: Session }) {
         </label>
       ) : null}
 
-      {/* <div className="session-ops-block">
-        <span>Messages</span>
-        <ul>
-          {messages.map((item) => (
-            <li key={item.id}>
-              <em>{item.authorRole}</em> {item.body}
-            </li>
-          ))}
-        </ul>
-        <textarea value={draft} onChange={(e) => setDraft(e.target.value)} rows={2} maxLength={2000} placeholder="Agent reply" />
-        <button type="button" className="btn-send" onClick={() => void sendAgent()}>
-          Send message
-        </button>
-      </div>
-
-      <div className="session-ops-block">
-        <span>Notes</span>
-        <ul>
-          {notes.slice(0, 6).map((item) => (
-            <li key={item.id}>{item.body}</li>
-          ))}
-        </ul>
-        <textarea value={noteDraft} onChange={(e) => setNoteDraft(e.target.value)} rows={2} maxLength={4000} placeholder="Internal note" />
-        <button type="button" className="btn-preview" onClick={() => void saveNote()}>
-          Add note
-        </button>
-      </div>
-
-      <div className="session-ops-block">
-        <span>Audit</span>
-        <ul>
-          {audits.slice(0, 8).map((item) => (
-            <li key={item.id}>{item.event_type || item.eventType}</li>
-          ))}
-        </ul>
-      </div> */}
-      
       {error ? <p className="accordion-hint">{error}</p> : null}
     </div>
   );
